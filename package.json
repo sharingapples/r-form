@@ -3,7 +3,17 @@
   "version": "1.0.0",
   "description": "Pure react form",
   "main": "dist/index.js",
+  "scripts": {
+    "demo": "nwb react run demo/index.js"
+  },
   "repository": "git@github.com:sharingapples/r-form.git",
   "author": "Ranjan Shrestha <ranjan@sharingapples.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.9.1"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
 }
