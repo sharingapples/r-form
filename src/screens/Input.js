@@ -49,10 +49,11 @@ class Input extends Component<Props> {
   render() {
     const { children, visibility, ...form } = this.props;
     const { visible } = this.state;
-    if (visible) {
-      return children(form);
+
+    if (!visible) {
+      return null;
     }
-    return null;
+    return children(form);
   }
 }
 

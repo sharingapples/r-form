@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Input from './Input';
 
-const { Provider, Consumer } = React.createContext();
+const { Provider, Consumer } = React.createContext({});
 
 class Form extends Component {
-  state = {};
+  state = this.props.value || {};
 
   nodes = [];
 
@@ -21,7 +21,6 @@ class Form extends Component {
   get(name) {
     return this.state[name];
   }
-
 
   update(name) {
     return (text) => {
@@ -60,7 +59,9 @@ class Form extends Component {
   }
 
   render() {
-    const { onSubmit, onChange, ...other } = this.props;
+    const {
+      onSubmit, onChange, value, ...other
+    } = this.props;
     return (
       <Provider value={{ form: this, state: this.state }} {...other} />
     );
@@ -84,6 +85,36 @@ Form.Input = ({
       />
     )}
   </Consumer>
+);
+
+Form.Array = ({ name, ...other }) => (
+  <Form.Input name={name} {...other}>
+    {form => (
+      <Form
+        value={{}}
+        {...other}
+      />
+    )}
+  </Form.Input>
+);
+
+
+const groupOnChange = (name, value, prevState) => ({
+  ...prevState,
+  [name]: value,
+});
+
+Form.Group = ({ name, ...other }) => (
+  <Form.Input name={name} {...other}>
+    {form => (
+      <Form
+        value={form.value}
+        onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
+        onSubmit={() => form.submit()}
+        {...other}
+      />
+    )}
+  </Form.Input>
 );
 
 Form.Consumer = Consumer;

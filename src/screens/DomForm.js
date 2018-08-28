@@ -7,21 +7,10 @@ type Props = {
   children: React,
 }
 
-const DomForm = ({ children, onSubmit }: Props) => (
-  <Form onSubmit={onSubmit}>
-    <Form.Consumer>
-      {({ form }) => (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            form.submit();
-          }}
-          onChange={e => e.preventDefault()}
-        >
-          {children}
-        </form>
-      ) }
-    </Form.Consumer>
-  </Form>);
+const DomForm = ({ onSubmit, ...other }: Props) => (
+  <form onSubmit={onSubmit}>
+    <Form {...other} />
+  </form>
+);
 
 export default DomForm;
