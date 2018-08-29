@@ -21,7 +21,7 @@ const Spouse = ({ name, ...other }) => (
 
 // const spouses = [{ name: 'A', age: 21 }, { name: 'B', age: 31 }, { name: 'C', age: 26 }];
 const spouses = ['A', 'B', 'C'];
-const hobby = [{ value: 'Music', checked: false }, { value: 'Drawing', checked: false }, { value: 'Sports', checked: false }];
+const hobbies = ['Music', 'Drawing', 'Sports'];
 
 class App extends Component {
   onSubmit() {
@@ -34,7 +34,7 @@ class App extends Component {
         onSubmit={this.onSubmit}
         value={
           {
-            name: 'Blah', spouse: { name: 'CCC', age: 21 }, spouses, hobby,
+            name: 'Blah', spouse: { name: 'CCC', age: 21 }, spouses, hobby: ['Drawing'],
           }}
       >
         <InputBox name="name" placeholder="Name" validator={required} /> <br />
@@ -46,7 +46,7 @@ class App extends Component {
           <option value="M"> Married </option>
         </Select>
         <br />
-        <CheckBox name="hobby" />
+        <CheckBox name="hobby" domain={hobbies} />
         <SubmitButton type="submit" value="Save" />
       </DomForm>
     );

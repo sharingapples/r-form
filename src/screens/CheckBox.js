@@ -1,42 +1,23 @@
 import React, { Fragment } from 'react';
 import Form from './Form';
 
-const checkboxOnChange = (name, idx, prevState) => {
-  const newArray = {
-    ...prevState,
-    state: prevState.map((state, id) => {
-      if (id !== idx) {
-        return state;
-      }
-      return {
-        ...state,
-        checked: !state.checked,
-      };
-    }),
-  };
-  return newArray.state;
-};
-
-
-const CheckBox = ({
-  name, validator, visibility, ...other
-}) => (
-  <Form.Input name={name} validator={validator} visibility={visibility}>
-    {(form) => {
-      return form.value.map(({ value, checked }, idx) => (
-        <Fragment key={value}>
-          <input
-            name={name}
-            type="checkbox"
-            value={value}
-            checked={checked}
-            onChange={() => form.update(checkboxOnChange(name, idx, form.value))}
-          />
-          {value} <br />
-        </Fragment>
-      ));
-    }
-    }
+const CheckBox = ({ domain, ...other }) => (
+  <Form.Input {...other}>
+    {form => domain.map(value => (
+      <Fragment key={value}>
+        <input
+          type="checkbox"
+          value={value}
+          checked={form.value.includes(value)}
+          onChange={e => (
+            e.target.checked
+              ? form.update(form.value.concat(e.target.value))
+              : form.update(form.value.filter(v => v !== e.target.value))
+          )}
+        />
+        {value} <br />
+      </Fragment>
+    ))}
   </Form.Input>
 );
 
