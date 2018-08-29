@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import DomForm from './screens/DomForm';
 import Select from './screens/Select';
+import CheckBox from './screens/CheckBox';
 import InputBox from './screens/InputBox';
 import SubmitButton from './screens/SubmitButton';
 import { required, numeric } from './validators';
@@ -18,6 +19,10 @@ const Spouse = ({ name, ...other }) => (
   </Form.Group>
 );
 
+// const spouses = [{ name: 'A', age: 21 }, { name: 'B', age: 31 }, { name: 'C', age: 26 }];
+const spouses = ['A', 'B', 'C'];
+const hobby = [{ value: 'Music', checked: false }, { value: 'Drawing', checked: false }, { value: 'Sports', checked: false }];
+
 class App extends Component {
   onSubmit() {
     console.log('submit');
@@ -25,7 +30,13 @@ class App extends Component {
 
   render() {
     return (
-      <DomForm onSubmit={this.onSubmit} value={{name: 'Blah', spouse: { name: 'CCC', age: 21 }, spouses: [{ name: 'A', age: 21 }, { name: 'B', age: 31 }, { name: 'C', age: 26 }] }}>
+      <DomForm
+        onSubmit={this.onSubmit}
+        value={
+          {
+            name: 'Blah', spouse: { name: 'CCC', age: 21 }, spouses, hobby,
+          }}
+      >
         <InputBox name="name" placeholder="Name" validator={required} /> <br />
         <InputBox name="username" placeholder="Username" /> <br />
         <InputBox type="number" name="phoneNumber" placeholder="Phone Number" validator={[numeric, required]} /> <br />
@@ -35,12 +46,7 @@ class App extends Component {
           <option value="M"> Married </option>
         </Select>
         <br />
-
-        <Form.Array name="spouses">
-          {name => (
-            <Spouse name={name} />
-          )}
-        </Form.Array>
+        <CheckBox name="hobby" />
         <SubmitButton type="submit" value="Save" />
       </DomForm>
     );

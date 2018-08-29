@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Input from './Input';
 
 const { Provider, Consumer } = React.createContext({});
@@ -87,13 +87,16 @@ Form.Input = ({
   </Consumer>
 );
 
-Form.Array = ({ name, ...other }) => (
+const arrayOnChange = (name, value, prevState, idx) =>{
+  console.log('money');
+}
+
+Form.Array = ({ name, children, onChange, auto, ...other }) => (
   <Form.Input name={name} {...other}>
     {form => (
-      <Form
-        value={{}}
-        {...other}
-      />
+      <Fragment>
+        {form.value.map((v, idx) => children(name, v, onChange: () => arrayOnChange))}
+      </Fragment>
     )}
   </Form.Input>
 );
@@ -107,12 +110,14 @@ const groupOnChange = (name, value, prevState) => ({
 Form.Group = ({ name, ...other }) => (
   <Form.Input name={name} {...other}>
     {form => (
-      <Form
-        value={form.value}
-        onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
-        onSubmit={() => form.submit()}
-        {...other}
-      />
+      <div>
+        <Form
+          value={form.value}
+          onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
+          onSubmit={() => form.submit()}
+          {...other}
+        />
+      </div>
     )}
   </Form.Input>
 );
