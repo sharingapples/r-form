@@ -88,14 +88,16 @@ Form.Input = ({
 );
 
 const arrayOnChange = (name, value, prevState, idx) => {
-  console.log('change');
+  console.log('change', value);
 };
 
 Form.Array = ({ name, children, onChange, auto, ...other }) => (
   <Form.Input name={name} {...other}>
     {form => (
       <Fragment>
-        {form.value.map((v, idx) => children(name))}
+        {form.value.map(
+          (v, idx) => children(idx, name, v, arrayOnChange(name, v, form.value, idx)),
+        )}
       </Fragment>
     )}
   </Form.Input>
