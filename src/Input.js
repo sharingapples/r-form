@@ -12,7 +12,7 @@ class Input extends Component {
         visible: true,
       };
     }
-    // console.log(get());
+
     return {
       visible: typeof visibility === 'function' ? visibility(state) : (visibility === undefined || visibility),
     };
