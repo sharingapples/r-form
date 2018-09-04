@@ -28,7 +28,7 @@ class Input extends Component<Props> {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { value } = this.props;
+    const value = this.props.get();
     const { visible } = this.state;
     const check = nextProps.value !== value || nextState.visible !== visible;
     return check;

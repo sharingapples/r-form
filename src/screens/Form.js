@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Input from './Input';
+import FormArray from './FormArray';
 
-const { Provider, Consumer } = React.createContext({});
+export const { Provider, Consumer } = React.createContext({});
 
 class Form extends Component {
   state = this.props.value || {};
@@ -19,7 +20,7 @@ class Form extends Component {
   }
 
   get(name) {
-    return this.state[name];
+    return () => this.state[name];
   }
 
   update(name) {
@@ -77,7 +78,7 @@ Form.Input = ({
         validator={validator}
         state={state}
         ref={form.register(name)}
-        value={form.get(name)}
+        get={form.get(name)}
         update={form.update(name)}
         next={form.next(name)}
         visibility={visibility}
@@ -87,22 +88,7 @@ Form.Input = ({
   </Consumer>
 );
 
-const arrayOnChange = (name, value, prevState, idx) => {
-  console.log('change', value);
-};
-
-Form.Array = ({ name, children, onChange, auto, ...other }) => (
-  <Form.Input name={name} {...other}>
-    {form => (
-      <Fragment>
-        {form.value.map(
-          (v, idx) => children(idx, name, v, arrayOnChange(name, v, form.value, idx)),
-        )}
-      </Fragment>
-    )}
-  </Form.Input>
-);
-
+Form.Array = FormArray;
 
 const groupOnChange = (name, value, prevState) => ({
   ...prevState,
@@ -112,14 +98,14 @@ const groupOnChange = (name, value, prevState) => ({
 Form.Group = ({ name, ...other }) => (
   <Form.Input name={name} {...other}>
     {form => (
-      <div>
+      <Fragment>
         <Form
           value={form.value}
           onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
           onSubmit={() => form.submit()}
           {...other}
         />
-      </div>
+      </Fragment>
     )}
   </Form.Input>
 );

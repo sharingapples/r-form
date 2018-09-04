@@ -8,7 +8,7 @@ const CheckBox = ({ domain, ...other }) => (
         <input
           type="checkbox"
           value={value}
-          checked={form.value.includes(value)}
+          checked={form.get().includes(value)}
           onChange={e => (
             e.target.checked
               ? form.update(form.value.concat(e.target.value))

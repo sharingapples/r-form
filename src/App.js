@@ -20,8 +20,8 @@ const Spouse = ({ name, ...other }) => (
   </Form.Group>
 );
 
-// const spouses = [{ name: 'A', age: 21 }, { name: 'B', age: 31 }, { name: 'C', age: 26 }];
-const spouses = ['A', 'B', 'C'];
+const spouses = [{ name: 'A', age: 21 }, { name: 'B', age: 31 }, { name: 'C', age: 26 }];
+// const spouses = ['A', 'B', 'C'];
 const hobbies = ['Music', 'Drawing', 'Sports'];
 const genders = ['Male', 'Female', 'Other'];
 
@@ -51,10 +51,9 @@ class App extends Component {
         <br />
         <CheckBox name="hobby" domain={hobbies} validator={required} />
         <RadioButton name="gender" domain={genders} />
-        {/* <Form.Array name="spouses" auto>
-          { (key, name, value, onChange) => (
-            <InputBox key={key} name={name} value={value} onChange={onChange} />) }
-        </Form.Array> */}
+        <br />
+        <Form.Array name="spouses" auto InputType={Spouse} />
+        <br />
         <SubmitButton type="submit" value="Save" />
       </DomForm>
     );
