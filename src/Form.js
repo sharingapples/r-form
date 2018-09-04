@@ -1,11 +1,14 @@
 // @flow
-import React, { Component, Fragment } from 'react';
-import Input from './Input';
-import FormArray from './FormArray';
+import React, { Component } from 'react';
 
 export const { Provider, Consumer } = React.createContext({});
 
-class Form extends Component {
+type Props = {
+  onSubmit: () => boolean,
+  onChange: (string) => any,
+};
+
+class Form extends Component <Props> {
   state = this.props.value || {};
 
   nodes = [];
@@ -61,7 +64,7 @@ class Form extends Component {
 
   render() {
     const {
-      onSubmit, onChange, value, ...other
+      onSubmit, onChange, ...other
     } = this.props;
     return (
       <Provider value={{ form: this, state: this.state }} {...other} />
@@ -69,46 +72,4 @@ class Form extends Component {
   }
 }
 
-Form.Input = ({
-  name, validator, visibility, ...other
-}) => (
-  <Consumer>
-    {({ form, state }) => (
-      <Input
-        validator={validator}
-        state={state}
-        ref={form.register(name)}
-        get={form.get(name)}
-        update={form.update(name)}
-        next={form.next(name)}
-        visibility={visibility}
-        {...other}
-      />
-    )}
-  </Consumer>
-);
-
-Form.Array = FormArray;
-
-const groupOnChange = (name, value, prevState) => ({
-  ...prevState,
-  [name]: value,
-});
-
-Form.Group = ({ name, ...other }) => (
-  <Form.Input name={name} {...other}>
-    {form => (
-      <Fragment>
-        <Form
-          value={form.value}
-          onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
-          onSubmit={() => form.submit()}
-          {...other}
-        />
-      </Fragment>
-    )}
-  </Form.Input>
-);
-
-Form.Consumer = Consumer;
 export default Form;

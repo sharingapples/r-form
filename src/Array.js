@@ -1,10 +1,11 @@
 import React from 'react';
-import Form, { Provider } from './Form';
+import { Provider } from './Form';
+import Input from './Input';
 
-const FormArray = ({
+const Array = ({
   InputType, name, auto, ...other
 }) => (
-  <Form.Input name={name} {...other}>
+  <Input name={name} {...other}>
     {(form) => {
       let nodes = [];
       const tmp = {
@@ -42,7 +43,7 @@ const FormArray = ({
       );
     }
     }
-  </Form.Input>
+  </Input>
 );
 
-export default FormArray;
+export default Array;
