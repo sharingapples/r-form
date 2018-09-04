@@ -1,14 +1,7 @@
-// @flow
 import React, { Component } from 'react';
 import Form, { Provider } from './Form';
 
-type Props = {
-  InputType: Object,
-  name: String,
-}
-
-
-class FormArray extends Component<Props> {
+class FormArray extends Component {
   state = this.props.value || {};
 
   nodes= [];
@@ -43,7 +36,12 @@ class FormArray extends Component<Props> {
               });
               form.update(newState);
             },
-            next: () => console.log('next'),
+            next: id => () => {
+              const idx = id + 1;
+              if (idx < nodes.length) {
+                this.nodes[idx].node.focus();
+              }
+            },
             register: id => (node) => {
               if (node === null) {
                 nodes = nodes.filter(n => n.id === id);
