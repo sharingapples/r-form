@@ -1,3 +1,3 @@
-import Form from './screens/Form';
+import Form from './Form';
 
 export default Form;
