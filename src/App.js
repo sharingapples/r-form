@@ -52,7 +52,7 @@ class App extends Component {
         <CheckBox name="hobby" domain={hobbies} validator={required} />
         <RadioButton name="gender" domain={genders} />
         <br />
-        <Form.Array name="spouses" auto InputType={Spouse} />
+        <Form.Array name="spouses" auto InputType={Spouse} visibility={spouseVisiblity} />
         <br />
         <SubmitButton type="submit" value="Save" />
       </DomForm>

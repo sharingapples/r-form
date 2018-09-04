@@ -6,3 +6,10 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
+
+
+// import Form from './screens/Form';
+
+// module.exports = {
+//   Form,
+// };

@@ -7,9 +7,16 @@ type Props = {
   children: React,
 }
 
+const rForm = React.createRef();
+
 const DomForm = ({ onSubmit, ...other }: Props) => (
-  <form onSubmit={onSubmit}>
-    <Form {...other} />
+  <form onSubmit={(e) => {
+    e.preventDefault();
+    rForm.current.submit(); // run all validators
+    onSubmit(); // call the on submit function defined by users
+  }}
+  >
+    <Form ref={rForm} {...other} />
   </form>
 );
 

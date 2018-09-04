@@ -25,7 +25,7 @@ class FormArray extends Component<Props> {
   }
 
   render() {
-    const { InputType, name } = this.props;
+    const { InputType, name, auto, visibility } = this.props;
     return (
       <Form.Input name={name}>
         {(form) => {
@@ -53,7 +53,9 @@ class FormArray extends Component<Props> {
           };
           return (
             <Provider value={{ form: tmp, state: form.value }}>
-              { form.get().map((value, idx) => <InputType key={idx} name={idx} />) }
+              { // eslint-disable-next-line react/no-array-index-key
+                form.get().map((value, idx) => <InputType key={idx} name={idx} visibility={visibility} />) }
+              { auto ? <InputType key={form.get().length} name={form.get().length} visibility={visibility} /> : null}
             </Provider>
           );
         }
