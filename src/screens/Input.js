@@ -22,6 +22,7 @@ class Input extends Component<Props> {
         visible: true,
       };
     }
+    // console.log(get());
     return {
       visible: typeof visibility === 'function' ? visibility(state) : (visibility === undefined || visibility),
     };
