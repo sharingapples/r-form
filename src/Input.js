@@ -1,6 +1,19 @@
-import { Component } from 'react';
+// @flow
+import React, { Component } from 'react';
 
-class Input extends Component {
+type ValidatorFunction = (value: string, state: {}) => void;
+
+type Props = {
+  validator : Array<ValidatorFunction> | ValidatorFunction,
+  visibility: boolean,
+  state: {},
+  value: String,
+  children: React,
+  get: Function,
+};
+
+
+class Input extends Component<Props> {
   state = {
     visible: false,
   };

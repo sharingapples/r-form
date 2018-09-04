@@ -1,3 +1,4 @@
+// @flow
 import React, { Component, Fragment } from 'react';
 import Input from './Input';
 import FormArray from './FormArray';
@@ -42,7 +43,6 @@ class Form extends Component {
 
   next(name) {
     return () => {
-      console.log('Next called', name);
       const idx = this.nodes.findIndex(n => n.name === name) + 1;
       if (idx < this.nodes.length) {
         this.nodes[idx].node.focus();
