@@ -3,7 +3,7 @@ import React from 'react';
 import Form from '../src';
 
 
-const component = renderer.create(
+const inputBox = renderer.create(
   <form>
     <Form>
       <input name="ss" />
@@ -13,7 +13,7 @@ const component = renderer.create(
 
 describe('Form component Test', () => {
   test('Form Component', () => {
-    let tree = component.toJSON();
-    console.log(tree);
+    let tree = inputBox.toJSON();
+    console.log(tree, Form.Input);
   });
 });
