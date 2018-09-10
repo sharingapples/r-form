@@ -1,10 +1,12 @@
 import renderer from 'react-test-renderer';
-import React from 'react';
+import React, { Fragment } from 'react';
 import Form from '../src';
 
 const value = {
   name: 'Blah', spouses: [{ name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }], hobby: ['Drawing'],
 };
+
+const hobbies = ['Drawing', 'Sports', 'Art'];
 
 const DomForm = ({ onSumbit, ...props }) => (
   <form onSubmit={() => onSumbit()}>
@@ -30,10 +32,31 @@ const FormGroup = () => (
   </Form.Group>
 );
 
+
+const CheckBox = ({ name, domain, ...other }) => (
+  <Form.Input name={name} {...other}>
+    {form => (domain.map(d => (
+      <Fragment key={d}>
+        <input
+          type="checkbox"
+          value={d}
+          checked={form.get().includes(d)}
+          onChange={e => (
+            e.target.checked ? form.update(form.value.concat(e.target.value)) : form.update(form.value.filter(v => v !== e.target.value))
+          )}
+        />
+      </Fragment>
+    ))
+
+    )}
+  </Form.Input>
+);
+
 const app = renderer.create(
   <DomForm onSubmit={() => console.log('submit')} value={value}>
     <InputBox name="name" /> <br />
     <FormArray name="spouses" InputType={FormGroup} />
+    <CheckBox name="hobby" domain={hobbies} />
   </DomForm>,
 );
 

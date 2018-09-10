@@ -27,5 +27,23 @@ exports[`Form component Test Form Component 1`] = `
   <input
     name="age"
   />
+  <input
+    checked={true}
+    onChange={[Function]}
+    type="checkbox"
+    value="Drawing"
+  />
+  <input
+    checked={false}
+    onChange={[Function]}
+    type="checkbox"
+    value="Sports"
+  />
+  <input
+    checked={false}
+    onChange={[Function]}
+    type="checkbox"
+    value="Art"
+  />
 </form>
 `;
