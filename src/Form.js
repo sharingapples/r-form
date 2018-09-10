@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 
-export const { Provider, Consumer } = React.createContext({state: 'blah'});
+export const { Provider, Consumer } = React.createContext();
 
 type Props = {
   onSubmit: () => boolean,

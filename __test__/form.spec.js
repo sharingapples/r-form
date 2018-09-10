@@ -1,6 +1,8 @@
 import renderer from 'react-test-renderer';
 import React, { Fragment } from 'react';
+import { mount, shallow, render } from 'enzyme';
 import Form from '../src';
+import './setupTests';
 
 const value = {
   name: 'Blah', spouses: [{ name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }], hobby: ['Drawing'],
@@ -62,8 +64,5 @@ const app = renderer.create(
 
 describe('Form component Test', () => {
   test('Form Component', () => {
-    const tree = app.toJSON();
-    console.log(JSON.stringify(tree));
-    expect(tree).toMatchSnapshot();
   });
 });
