@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component Test Form Component 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <inputBox
+    name="name"
+  />
+</form>
+`;

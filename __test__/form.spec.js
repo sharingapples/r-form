@@ -6,15 +6,15 @@ const value = {
   name: 'Blah', spouse: { name: 'CCC', age: 21 }, hobby: ['Drawing'],
 };
 
-function DomForm(v) {
+const DomForm = (props) => {
   return (
     <form onSubmit={() => console.log('submit')}>
-      <Form value={v} {...v} />
+      <Form {...props} />
     </form>
   );
 }
 
-const inputBox = ({ name, value, validator}) => (
+const InputBox = ({ name, value, validator}) => (
   <Form.Input>
     {form => (<input name={name} />) }
   </Form.Input>
@@ -23,13 +23,14 @@ const inputBox = ({ name, value, validator}) => (
 
 const app = renderer.create(
   <DomForm value={value}>
-    <inputBox name="name" />
+    <InputBox name="name" />
   </DomForm>,
 );
 
 describe('Form component Test', () => {
   test('Form Component', () => {
-    let tree = app.toJSON();
-    console.log(tree.children);
+    const tree = app.toJSON();
+    console.log(JSON.stringify(tree));
+    expect(tree).toMatchSnapshot();
   });
 });

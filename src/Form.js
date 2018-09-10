@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 
-export const { Provider, Consumer } = React.createContext({});
+export const { Provider, Consumer } = React.createContext({state: 'blah'});
 
 type Props = {
   onSubmit: () => boolean,
@@ -66,6 +66,12 @@ class Form extends Component <Props> {
     const {
       onSubmit, onChange, ...other
     } = this.props;
+    this.register = this.register.bind(this);
+    this.get = this.get.bind(this);
+    this.next = this.next.bind(this);
+    this.update = this.update.bind(this);
+    this.submit = this.submit.bind(this);
+    console.log('here', this.state);
     return (
       <Provider value={{ form: this, state: this.state }} {...other} />
     );
