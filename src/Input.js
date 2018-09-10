@@ -6,10 +6,7 @@ const Input = ({
   name, ...other
 }) => (
   <Consumer>
-    {(v) => {
-      const { form, state } = v;
-      console.log(v);
-      return (
+    {({ form, state }) => (
       <InputHelper
         state={state}
         ref={form.register(name)}
@@ -18,7 +15,7 @@ const Input = ({
         next={form.next(name)}
         {...other}
       />
-    )} }
+    )}
   </Consumer>
 );
 

@@ -3,27 +3,37 @@ import React from 'react';
 import Form from '../src';
 
 const value = {
-  name: 'Blah', spouse: { name: 'CCC', age: 21 }, hobby: ['Drawing'],
+  name: 'Blah', spouses: [{ name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }, { name: 'CCC', age: 21 }], hobby: ['Drawing'],
 };
 
-const DomForm = (props) => {
-  return (
-    <form onSubmit={() => console.log('submit')}>
-      <Form {...props} />
-    </form>
-  );
-}
+const DomForm = ({ onSumbit, ...props }) => (
+  <form onSubmit={() => onSumbit()}>
+    <Form {...props} />
+  </form>
+);
+
 
 const InputBox = ({ name, value, validator}) => (
-  <Form.Input>
+  <Form.Input name={name}>
     {form => (<input name={name} />) }
   </Form.Input>
 );
 
+const FormArray = ({ name, InputType }) => (
+  <Form.Array name={name} InputType={InputType} />
+);
+
+const FormGroup = () => (
+  <Form.Group>
+    <InputBox name="name" />
+    <InputBox name="age" />
+  </Form.Group>
+);
 
 const app = renderer.create(
-  <DomForm value={value}>
-    <InputBox name="name" />
+  <DomForm onSubmit={() => console.log('submit')} value={value}>
+    <InputBox name="name" /> <br />
+    <FormArray name="spouses" InputType={FormGroup} />
   </DomForm>,
 );
 

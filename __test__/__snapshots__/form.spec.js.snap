@@ -4,8 +4,28 @@ exports[`Form component Test Form Component 1`] = `
 <form
   onSubmit={[Function]}
 >
-  <inputBox
+  <input
     name="name"
+  />
+   
+  <br />
+  <input
+    name="name"
+  />
+  <input
+    name="age"
+  />
+  <input
+    name="name"
+  />
+  <input
+    name="age"
+  />
+  <input
+    name="name"
+  />
+  <input
+    name="age"
   />
 </form>
 `;

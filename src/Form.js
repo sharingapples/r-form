@@ -64,14 +64,13 @@ class Form extends Component <Props> {
 
   render() {
     const {
-      onSubmit, onChange, ...other
+      onSubmit, onChange, value, ...other
     } = this.props;
     this.register = this.register.bind(this);
     this.get = this.get.bind(this);
     this.next = this.next.bind(this);
     this.update = this.update.bind(this);
     this.submit = this.submit.bind(this);
-    console.log('here', this.state);
     return (
       <Provider value={{ form: this, state: this.state }} {...other} />
     );
