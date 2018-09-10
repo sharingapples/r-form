@@ -10,8 +10,8 @@ const value = {
 
 const hobbies = ['Drawing', 'Sports', 'Art'];
 
-const DomForm = ({ onSumbit, ...props }) => (
-  <form onSubmit={() => onSumbit()}>
+const DomForm = ({ onSubmit, ...props }) => (
+  <form onSubmit={() => onSubmit()}>
     <Form {...props} />
   </form>
 );
@@ -54,15 +54,31 @@ const CheckBox = ({ name, domain, ...other }) => (
   </Form.Input>
 );
 
-const app = renderer.create(
-  <DomForm onSubmit={() => console.log('submit')} value={value}>
+const App = ({ onSubmit, onChange }) => (
+  <DomForm onSubmit={() => onSubmit()} onChange={() => onChange()} value={value}>
     <InputBox name="name" /> <br />
     <FormArray name="spouses" InputType={FormGroup} />
     <CheckBox name="hobby" domain={hobbies} />
-  </DomForm>,
+  </DomForm>
 );
 
+const submitFn = jest.fn();
+const checkedFn = jest.fn();
+
 describe('Form component Test', () => {
-  test('Form Component', () => {
+  test('Form onSubmit Called', () => {
+    const changeFn = jest.fn();
+
+    const component = mount(<App onSubmit={() => submitFn()} onChange={() => changeFn()} />);
+
+    const input = component.first('input');
+    input.simulate('change', 'somevalue');
+    expect(checkedFn).toHaveBeenCalled();
   });
+
+  // test('Checkbox test', () => {
+  //   const component = mount(<App />);
+  //   const checkbox = component.first('input[type="checkbox"]');
+  //   console.log(checkbox.get());
+  // });
 });
