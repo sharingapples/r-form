@@ -3,17 +3,18 @@ import { Provider } from './Form';
 import Input from './Input';
 
 const Array = ({
-  InputType, name, auto, ...other
+  InputType, name, value, auto, ...other
 }) => (
   <Input name={name} {...other}>
     {(form) => {
       let nodes = [];
+      const state = value || form.get();
       const tmp = {
-        get: id => () => form.get()[id],
-        update: id => (value) => {
-          const newState = form.get().map((v, idx) => {
+        get: id => () => state[id],
+        update: id => (text) => {
+          const newState = state.map((v, idx) => {
             if (id === idx) {
-              return value;
+              return text;
             }
             return v;
           });
@@ -34,11 +35,15 @@ const Array = ({
         },
 
       };
+
+      console.log('Input', form.get(), name, state);
       return (
-        <Provider value={{ form: tmp, state: form.value }}>
-          { // eslint-disable-next-line react/no-array-index-key
-            form.get().map((value, idx) => <InputType key={idx} name={idx} />) }
-          { auto ? <InputType key={form.get().length} name={form.get().length} /> : null}
+        <Provider value={{ form: tmp, state }}>
+          <InputType name="name" />
+          {/* <InputType InputType={props.InputType} /> */}
+          {/* { // eslint-disable-next-line react/no-array-index-key
+            state.map((v, idx) => <InputType key={idx} name={idx} value={v} />) }
+          { auto ? <InputType key={form.get().length} name={form.get().length} /> : null} */}
         </Provider>
       );
     }

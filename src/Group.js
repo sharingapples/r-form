@@ -12,7 +12,7 @@ const Group = ({ name, ...other }) => (
     {form => (
       <Fragment>
         <Form
-          value={form.value}
+          value={form.get()}
           onChange={(n, value, prevState) => form.update(groupOnChange(n, value, prevState))}
           onSubmit={() => form.submit()}
           {...other}
