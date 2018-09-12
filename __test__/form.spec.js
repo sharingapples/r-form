@@ -172,26 +172,26 @@ describe('Form component Test', () => {
   test('Form Input on Change', () => {
     expect(component).toMatchSnapshot();
 
-    // const input = component.find('input').first();
-    // input.simulate('change', { target: { value: 'new Value' } });
+    const input = component.find('input').first();
+    input.simulate('change', { target: { value: 'new Value' } });
 
-    // const inp = component.find('input').first();
+    const inp = component.find('input').first();
 
-    // expect(inp.props().value).toBe('new Value');
+    expect(inp.props().value).toBe('new Value');
 
-    // expect(changeFn).toHaveBeenCalled();
+    expect(changeFn).toHaveBeenCalled();
   });
 
-  // test('Form Group on Change', () => {
-  //   const formGroup = component.find(FormGroup).first();
-  //   const firstInputBox = formGroup.find('input').first();
+  test('Form Group on Change', () => {
+    const formGroup = component.find(FormGroup).first();
+    const firstInputBox = formGroup.find('input').first();
 
-  //   firstInputBox.simulate('change', { target: { value: 'new Value' } });
+    firstInputBox.simulate('change', { target: { value: 'new Value' } });
 
-  //   const changeformGroup = component.find(Form).first();
-  //   const changeInputBox = changeformGroup.find('input').first();
-  //   expect(changeInputBox.props().value).toBe('new Value');
-  // });
+    const changeformGroup = component.find(Form).first();
+    const changeInputBox = changeformGroup.find('input').first();
+    expect(changeInputBox.props().value).toBe('new Value');
+  });
 
   test('Form Array on Change', () => {
     const formArray = component.find(FormArray).first();

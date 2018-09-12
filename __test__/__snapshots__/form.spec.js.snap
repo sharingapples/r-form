@@ -1,0 +1,1331 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component Test Form Input on Change 1`] = `
+<App
+  onChange={[Function]}
+  onSubmit={[Function]}
+>
+  <DomForm
+    onChange={[Function]}
+    onSubmit={[Function]}
+    value={
+      Object {
+        "almaMater": Object {
+          "school": Array [
+            Object {
+              "name": "First School",
+            },
+            Object {
+              "name": "Second School",
+            },
+          ],
+        },
+        "hobby": Array [
+          "Drawing",
+        ],
+        "name": "Blah",
+        "nameList": Array [
+          "Nun",
+          "Another",
+          "One",
+        ],
+        "something": Array [
+          Array [
+            "1",
+            "2",
+          ],
+        ],
+        "spouse": Object {
+          "age": 11,
+          "name": "spousename",
+        },
+        "spouses": Array [
+          Object {
+            "age": 20,
+            "name": "A",
+          },
+          Object {
+            "age": 21,
+            "name": "B",
+          },
+          Object {
+            "age": 22,
+            "name": "C",
+          },
+        ],
+      }
+    }
+  >
+    <form
+      onChange={[Function]}
+      onSubmit={[Function]}
+    >
+      <Form
+        value={
+          Object {
+            "almaMater": Object {
+              "school": Array [
+                Object {
+                  "name": "First School",
+                },
+                Object {
+                  "name": "Second School",
+                },
+              ],
+            },
+            "hobby": Array [
+              "Drawing",
+            ],
+            "name": "Blah",
+            "nameList": Array [
+              "Nun",
+              "Another",
+              "One",
+            ],
+            "something": Array [
+              Array [
+                "1",
+                "2",
+              ],
+            ],
+            "spouse": Object {
+              "age": 11,
+              "name": "spousename",
+            },
+            "spouses": Array [
+              Object {
+                "age": 20,
+                "name": "A",
+              },
+              Object {
+                "age": 21,
+                "name": "B",
+              },
+              Object {
+                "age": 22,
+                "name": "C",
+              },
+            ],
+          }
+        }
+      >
+        <InputBox
+          name="name"
+        >
+          <Input
+            name="name"
+          >
+            <InputHelper
+              get={[Function]}
+              next={[Function]}
+              state={
+                Object {
+                  "almaMater": Object {
+                    "school": Array [
+                      Object {
+                        "name": "First School",
+                      },
+                      Object {
+                        "name": "Second School",
+                      },
+                    ],
+                  },
+                  "hobby": Array [
+                    "Drawing",
+                  ],
+                  "name": "Blah",
+                  "nameList": Array [
+                    "Nun",
+                    "Another",
+                    "One",
+                  ],
+                  "something": Array [
+                    Array [
+                      "1",
+                      "2",
+                    ],
+                  ],
+                  "spouse": Object {
+                    "age": 11,
+                    "name": "spousename",
+                  },
+                  "spouses": Array [
+                    Object {
+                      "age": 20,
+                      "name": "A",
+                    },
+                    Object {
+                      "age": 21,
+                      "name": "B",
+                    },
+                    Object {
+                      "age": 22,
+                      "name": "C",
+                    },
+                  ],
+                }
+              }
+              update={[Function]}
+            >
+              <input
+                name="name"
+                onChange={[Function]}
+                value="Blah"
+              />
+            </InputHelper>
+          </Input>
+        </InputBox>
+         
+        <br />
+        <FormArray
+          InputType={[Function]}
+          name="nameList"
+        >
+          <_Array
+            name="nameList"
+          >
+            <Input
+              name="nameList"
+            >
+              <InputHelper
+                get={[Function]}
+                next={[Function]}
+                state={
+                  Object {
+                    "almaMater": Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    },
+                    "hobby": Array [
+                      "Drawing",
+                    ],
+                    "name": "Blah",
+                    "nameList": Array [
+                      "Nun",
+                      "Another",
+                      "One",
+                    ],
+                    "something": Array [
+                      Array [
+                        "1",
+                        "2",
+                      ],
+                    ],
+                    "spouse": Object {
+                      "age": 11,
+                      "name": "spousename",
+                    },
+                    "spouses": Array [
+                      Object {
+                        "age": 20,
+                        "name": "A",
+                      },
+                      Object {
+                        "age": 21,
+                        "name": "B",
+                      },
+                      Object {
+                        "age": 22,
+                        "name": "C",
+                      },
+                    ],
+                  }
+                }
+                update={[Function]}
+              >
+                <div
+                  key="0"
+                >
+                  <InputBox
+                    name={0}
+                  >
+                    <Input
+                      name={0}
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Array [
+                            "Nun",
+                            "Another",
+                            "One",
+                          ]
+                        }
+                        update={[Function]}
+                      >
+                        <input
+                          name={0}
+                          onChange={[Function]}
+                          value="Nun"
+                        />
+                      </InputHelper>
+                    </Input>
+                  </InputBox>
+                </div>
+                <div
+                  key="1"
+                >
+                  <InputBox
+                    name={1}
+                  >
+                    <Input
+                      name={1}
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Array [
+                            "Nun",
+                            "Another",
+                            "One",
+                          ]
+                        }
+                        update={[Function]}
+                      >
+                        <input
+                          name={1}
+                          onChange={[Function]}
+                          value="Another"
+                        />
+                      </InputHelper>
+                    </Input>
+                  </InputBox>
+                </div>
+                <div
+                  key="2"
+                >
+                  <InputBox
+                    name={2}
+                  >
+                    <Input
+                      name={2}
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Array [
+                            "Nun",
+                            "Another",
+                            "One",
+                          ]
+                        }
+                        update={[Function]}
+                      >
+                        <input
+                          name={2}
+                          onChange={[Function]}
+                          value="One"
+                        />
+                      </InputHelper>
+                    </Input>
+                  </InputBox>
+                </div>
+              </InputHelper>
+            </Input>
+          </_Array>
+        </FormArray>
+        <FormGroup
+          name="spouse"
+        >
+          <Group
+            name="spouse"
+          >
+            <Input
+              name="spouse"
+            >
+              <InputHelper
+                get={[Function]}
+                next={[Function]}
+                state={
+                  Object {
+                    "almaMater": Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    },
+                    "hobby": Array [
+                      "Drawing",
+                    ],
+                    "name": "Blah",
+                    "nameList": Array [
+                      "Nun",
+                      "Another",
+                      "One",
+                    ],
+                    "something": Array [
+                      Array [
+                        "1",
+                        "2",
+                      ],
+                    ],
+                    "spouse": Object {
+                      "age": 11,
+                      "name": "spousename",
+                    },
+                    "spouses": Array [
+                      Object {
+                        "age": 20,
+                        "name": "A",
+                      },
+                      Object {
+                        "age": 21,
+                        "name": "B",
+                      },
+                      Object {
+                        "age": 22,
+                        "name": "C",
+                      },
+                    ],
+                  }
+                }
+                update={[Function]}
+              >
+                <Form
+                  onChange={[Function]}
+                  onSubmit={[Function]}
+                  value={
+                    Object {
+                      "age": 11,
+                      "name": "spousename",
+                    }
+                  }
+                >
+                  <InputBox
+                    name="name"
+                  >
+                    <Input
+                      name="name"
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Object {
+                            "age": 11,
+                            "name": "spousename",
+                          }
+                        }
+                        update={[Function]}
+                      >
+                        <input
+                          name="name"
+                          onChange={[Function]}
+                          value="spousename"
+                        />
+                      </InputHelper>
+                    </Input>
+                  </InputBox>
+                  <InputBox
+                    name="age"
+                  >
+                    <Input
+                      name="age"
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Object {
+                            "age": 11,
+                            "name": "spousename",
+                          }
+                        }
+                        update={[Function]}
+                      >
+                        <input
+                          name="age"
+                          onChange={[Function]}
+                          value={11}
+                        />
+                      </InputHelper>
+                    </Input>
+                  </InputBox>
+                </Form>
+              </InputHelper>
+            </Input>
+          </Group>
+        </FormGroup>
+        <CheckBox
+          domain={
+            Array [
+              "Drawing",
+              "Sports",
+              "Art",
+            ]
+          }
+          name="hobby"
+        >
+          <Input
+            name="hobby"
+          >
+            <InputHelper
+              get={[Function]}
+              next={[Function]}
+              state={
+                Object {
+                  "almaMater": Object {
+                    "school": Array [
+                      Object {
+                        "name": "First School",
+                      },
+                      Object {
+                        "name": "Second School",
+                      },
+                    ],
+                  },
+                  "hobby": Array [
+                    "Drawing",
+                  ],
+                  "name": "Blah",
+                  "nameList": Array [
+                    "Nun",
+                    "Another",
+                    "One",
+                  ],
+                  "something": Array [
+                    Array [
+                      "1",
+                      "2",
+                    ],
+                  ],
+                  "spouse": Object {
+                    "age": 11,
+                    "name": "spousename",
+                  },
+                  "spouses": Array [
+                    Object {
+                      "age": 20,
+                      "name": "A",
+                    },
+                    Object {
+                      "age": 21,
+                      "name": "B",
+                    },
+                    Object {
+                      "age": 22,
+                      "name": "C",
+                    },
+                  ],
+                }
+              }
+              update={[Function]}
+            >
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox"
+                value="Drawing"
+              />
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="Sports"
+              />
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="Art"
+              />
+            </InputHelper>
+          </Input>
+        </CheckBox>
+        <SpousesGroup
+          name="spouses"
+        >
+          <_Array
+            name="spouses"
+          >
+            <Input
+              name="spouses"
+            >
+              <InputHelper
+                get={[Function]}
+                next={[Function]}
+                state={
+                  Object {
+                    "almaMater": Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    },
+                    "hobby": Array [
+                      "Drawing",
+                    ],
+                    "name": "Blah",
+                    "nameList": Array [
+                      "Nun",
+                      "Another",
+                      "One",
+                    ],
+                    "something": Array [
+                      Array [
+                        "1",
+                        "2",
+                      ],
+                    ],
+                    "spouse": Object {
+                      "age": 11,
+                      "name": "spousename",
+                    },
+                    "spouses": Array [
+                      Object {
+                        "age": 20,
+                        "name": "A",
+                      },
+                      Object {
+                        "age": 21,
+                        "name": "B",
+                      },
+                      Object {
+                        "age": 22,
+                        "name": "C",
+                      },
+                    ],
+                  }
+                }
+                update={[Function]}
+              >
+                <div
+                  key="0"
+                >
+                  <FormGroup
+                    name={0}
+                  >
+                    <Group
+                      name={0}
+                    >
+                      <Input
+                        name={0}
+                      >
+                        <InputHelper
+                          get={[Function]}
+                          next={[Function]}
+                          state={
+                            Array [
+                              Object {
+                                "age": 20,
+                                "name": "A",
+                              },
+                              Object {
+                                "age": 21,
+                                "name": "B",
+                              },
+                              Object {
+                                "age": 22,
+                                "name": "C",
+                              },
+                            ]
+                          }
+                          update={[Function]}
+                        >
+                          <Form
+                            onChange={[Function]}
+                            onSubmit={[Function]}
+                            value={
+                              Object {
+                                "age": 20,
+                                "name": "A",
+                              }
+                            }
+                          >
+                            <InputBox
+                              name="name"
+                            >
+                              <Input
+                                name="name"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 20,
+                                      "name": "A",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="name"
+                                    onChange={[Function]}
+                                    value="A"
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                            <InputBox
+                              name="age"
+                            >
+                              <Input
+                                name="age"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 20,
+                                      "name": "A",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="age"
+                                    onChange={[Function]}
+                                    value={20}
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                          </Form>
+                        </InputHelper>
+                      </Input>
+                    </Group>
+                  </FormGroup>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     + 
+                  </button>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     - 
+                  </button>
+                </div>
+                <div
+                  key="1"
+                >
+                  <FormGroup
+                    name={1}
+                  >
+                    <Group
+                      name={1}
+                    >
+                      <Input
+                        name={1}
+                      >
+                        <InputHelper
+                          get={[Function]}
+                          next={[Function]}
+                          state={
+                            Array [
+                              Object {
+                                "age": 20,
+                                "name": "A",
+                              },
+                              Object {
+                                "age": 21,
+                                "name": "B",
+                              },
+                              Object {
+                                "age": 22,
+                                "name": "C",
+                              },
+                            ]
+                          }
+                          update={[Function]}
+                        >
+                          <Form
+                            onChange={[Function]}
+                            onSubmit={[Function]}
+                            value={
+                              Object {
+                                "age": 21,
+                                "name": "B",
+                              }
+                            }
+                          >
+                            <InputBox
+                              name="name"
+                            >
+                              <Input
+                                name="name"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 21,
+                                      "name": "B",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="name"
+                                    onChange={[Function]}
+                                    value="B"
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                            <InputBox
+                              name="age"
+                            >
+                              <Input
+                                name="age"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 21,
+                                      "name": "B",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="age"
+                                    onChange={[Function]}
+                                    value={21}
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                          </Form>
+                        </InputHelper>
+                      </Input>
+                    </Group>
+                  </FormGroup>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     + 
+                  </button>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     - 
+                  </button>
+                </div>
+                <div
+                  key="2"
+                >
+                  <FormGroup
+                    name={2}
+                  >
+                    <Group
+                      name={2}
+                    >
+                      <Input
+                        name={2}
+                      >
+                        <InputHelper
+                          get={[Function]}
+                          next={[Function]}
+                          state={
+                            Array [
+                              Object {
+                                "age": 20,
+                                "name": "A",
+                              },
+                              Object {
+                                "age": 21,
+                                "name": "B",
+                              },
+                              Object {
+                                "age": 22,
+                                "name": "C",
+                              },
+                            ]
+                          }
+                          update={[Function]}
+                        >
+                          <Form
+                            onChange={[Function]}
+                            onSubmit={[Function]}
+                            value={
+                              Object {
+                                "age": 22,
+                                "name": "C",
+                              }
+                            }
+                          >
+                            <InputBox
+                              name="name"
+                            >
+                              <Input
+                                name="name"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 22,
+                                      "name": "C",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="name"
+                                    onChange={[Function]}
+                                    value="C"
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                            <InputBox
+                              name="age"
+                            >
+                              <Input
+                                name="age"
+                              >
+                                <InputHelper
+                                  get={[Function]}
+                                  next={[Function]}
+                                  state={
+                                    Object {
+                                      "age": 22,
+                                      "name": "C",
+                                    }
+                                  }
+                                  update={[Function]}
+                                >
+                                  <input
+                                    name="age"
+                                    onChange={[Function]}
+                                    value={22}
+                                  />
+                                </InputHelper>
+                              </Input>
+                            </InputBox>
+                          </Form>
+                        </InputHelper>
+                      </Input>
+                    </Group>
+                  </FormGroup>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     + 
+                  </button>
+                  <button
+                    onClick={[Function]}
+                    type="button"
+                  >
+                     - 
+                  </button>
+                </div>
+              </InputHelper>
+            </Input>
+          </_Array>
+        </SpousesGroup>
+        <ArrayList
+          name="something"
+        >
+          <_Array
+            name="something"
+          >
+            <Input
+              name="something"
+            >
+              <InputHelper
+                get={[Function]}
+                next={[Function]}
+                state={
+                  Object {
+                    "almaMater": Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    },
+                    "hobby": Array [
+                      "Drawing",
+                    ],
+                    "name": "Blah",
+                    "nameList": Array [
+                      "Nun",
+                      "Another",
+                      "One",
+                    ],
+                    "something": Array [
+                      Array [
+                        "1",
+                        "2",
+                      ],
+                    ],
+                    "spouse": Object {
+                      "age": 11,
+                      "name": "spousename",
+                    },
+                    "spouses": Array [
+                      Object {
+                        "age": 20,
+                        "name": "A",
+                      },
+                      Object {
+                        "age": 21,
+                        "name": "B",
+                      },
+                      Object {
+                        "age": 22,
+                        "name": "C",
+                      },
+                    ],
+                  }
+                }
+                update={[Function]}
+              >
+                <List
+                  key="0"
+                  name={0}
+                >
+                  <_Array
+                    name={0}
+                  >
+                    <Input
+                      name={0}
+                    >
+                      <InputHelper
+                        get={[Function]}
+                        next={[Function]}
+                        state={
+                          Array [
+                            Array [
+                              "1",
+                              "2",
+                            ],
+                          ]
+                        }
+                        update={[Function]}
+                      >
+                        <InputBox
+                          key="0"
+                          name={0}
+                        >
+                          <Input
+                            name={0}
+                          >
+                            <InputHelper
+                              get={[Function]}
+                              next={[Function]}
+                              state={
+                                Array [
+                                  "1",
+                                  "2",
+                                ]
+                              }
+                              update={[Function]}
+                            >
+                              <input
+                                name={0}
+                                onChange={[Function]}
+                                value="1"
+                              />
+                            </InputHelper>
+                          </Input>
+                        </InputBox>
+                        <InputBox
+                          key="1"
+                          name={1}
+                        >
+                          <Input
+                            name={1}
+                          >
+                            <InputHelper
+                              get={[Function]}
+                              next={[Function]}
+                              state={
+                                Array [
+                                  "1",
+                                  "2",
+                                ]
+                              }
+                              update={[Function]}
+                            >
+                              <input
+                                name={1}
+                                onChange={[Function]}
+                                value="2"
+                              />
+                            </InputHelper>
+                          </Input>
+                        </InputBox>
+                      </InputHelper>
+                    </Input>
+                  </_Array>
+                </List>
+              </InputHelper>
+            </Input>
+          </_Array>
+        </ArrayList>
+        <GroupArray
+          name="almaMater"
+        >
+          <Group
+            name="almaMater"
+          >
+            <Input
+              name="almaMater"
+            >
+              <InputHelper
+                get={[Function]}
+                next={[Function]}
+                state={
+                  Object {
+                    "almaMater": Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    },
+                    "hobby": Array [
+                      "Drawing",
+                    ],
+                    "name": "Blah",
+                    "nameList": Array [
+                      "Nun",
+                      "Another",
+                      "One",
+                    ],
+                    "something": Array [
+                      Array [
+                        "1",
+                        "2",
+                      ],
+                    ],
+                    "spouse": Object {
+                      "age": 11,
+                      "name": "spousename",
+                    },
+                    "spouses": Array [
+                      Object {
+                        "age": 20,
+                        "name": "A",
+                      },
+                      Object {
+                        "age": 21,
+                        "name": "B",
+                      },
+                      Object {
+                        "age": 22,
+                        "name": "C",
+                      },
+                    ],
+                  }
+                }
+                update={[Function]}
+              >
+                <Form
+                  onChange={[Function]}
+                  onSubmit={[Function]}
+                  value={
+                    Object {
+                      "school": Array [
+                        Object {
+                          "name": "First School",
+                        },
+                        Object {
+                          "name": "Second School",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <SchoolArray
+                    name="school"
+                  >
+                    <_Array
+                      name="school"
+                    >
+                      <Input
+                        name="school"
+                      >
+                        <InputHelper
+                          get={[Function]}
+                          next={[Function]}
+                          state={
+                            Object {
+                              "school": Array [
+                                Object {
+                                  "name": "First School",
+                                },
+                                Object {
+                                  "name": "Second School",
+                                },
+                              ],
+                            }
+                          }
+                          update={[Function]}
+                        >
+                          <Group
+                            key="0"
+                            name={0}
+                          >
+                            <Input
+                              name={0}
+                            >
+                              <InputHelper
+                                get={[Function]}
+                                next={[Function]}
+                                state={
+                                  Array [
+                                    Object {
+                                      "name": "First School",
+                                    },
+                                    Object {
+                                      "name": "Second School",
+                                    },
+                                  ]
+                                }
+                                update={[Function]}
+                              >
+                                <Form
+                                  onChange={[Function]}
+                                  onSubmit={[Function]}
+                                  value={
+                                    Object {
+                                      "name": "First School",
+                                    }
+                                  }
+                                >
+                                  <InputBox
+                                    name="name"
+                                  >
+                                    <Input
+                                      name="name"
+                                    >
+                                      <InputHelper
+                                        get={[Function]}
+                                        next={[Function]}
+                                        state={
+                                          Object {
+                                            "name": "First School",
+                                          }
+                                        }
+                                        update={[Function]}
+                                      >
+                                        <input
+                                          name="name"
+                                          onChange={[Function]}
+                                          value="First School"
+                                        />
+                                      </InputHelper>
+                                    </Input>
+                                  </InputBox>
+                                </Form>
+                              </InputHelper>
+                            </Input>
+                          </Group>
+                          <Group
+                            key="1"
+                            name={1}
+                          >
+                            <Input
+                              name={1}
+                            >
+                              <InputHelper
+                                get={[Function]}
+                                next={[Function]}
+                                state={
+                                  Array [
+                                    Object {
+                                      "name": "First School",
+                                    },
+                                    Object {
+                                      "name": "Second School",
+                                    },
+                                  ]
+                                }
+                                update={[Function]}
+                              >
+                                <Form
+                                  onChange={[Function]}
+                                  onSubmit={[Function]}
+                                  value={
+                                    Object {
+                                      "name": "Second School",
+                                    }
+                                  }
+                                >
+                                  <InputBox
+                                    name="name"
+                                  >
+                                    <Input
+                                      name="name"
+                                    >
+                                      <InputHelper
+                                        get={[Function]}
+                                        next={[Function]}
+                                        state={
+                                          Object {
+                                            "name": "Second School",
+                                          }
+                                        }
+                                        update={[Function]}
+                                      >
+                                        <input
+                                          name="name"
+                                          onChange={[Function]}
+                                          value="Second School"
+                                        />
+                                      </InputHelper>
+                                    </Input>
+                                  </InputBox>
+                                </Form>
+                              </InputHelper>
+                            </Input>
+                          </Group>
+                        </InputHelper>
+                      </Input>
+                    </_Array>
+                  </SchoolArray>
+                </Form>
+              </InputHelper>
+            </Input>
+          </Group>
+        </GroupArray>
+        <Select
+          select={[Function]}
+        >
+          <SelectPure
+            child={[Function]}
+          />
+        </Select>
+      </Form>
+    </form>
+  </DomForm>
+</App>
+`;
