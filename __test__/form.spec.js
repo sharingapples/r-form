@@ -10,6 +10,7 @@ const value = {
   hobby: ['Drawing'],
   nameList: ['Nun', 'Another', 'One'],
   something: [['1', '2']],
+  almaMater: { school: [{ name: 'First School' }, { name: 'Second School' }] },
 };
 
 const hobbies = ['Drawing', 'Sports', 'Art'];
@@ -38,8 +39,17 @@ const InputBox = ({ name, value, validator}) => (
   </Form.Input>
 );
 
-const FormArray = ({ name, InputType }) => (
-  <Form.Array name={name} InputType={InputType} />
+const FormArray = ({ name }) => (
+  <Form.Array name={name}>
+    {({ idx }) => {
+      return (
+        <div key={idx}>
+          <InputBox name={idx} />
+        </div>
+      );
+    }
+  }
+  </Form.Array>
 );
 
 const FormGroup = ({ name }) => (
@@ -50,6 +60,41 @@ const FormGroup = ({ name }) => (
 );
 
 
+const SpousesGroup = ({ name }) => (
+  <Form.Array name={name}>
+    {({ idx, insert, remove }) => {
+      return (
+        <div key={idx}>
+          <FormGroup name={idx} />
+          <button type="button" onClick={() => insert()}> + </button>
+          <button type="button" onClick={() => remove(idx)}> - </button>
+        </div>
+      );
+    }
+    }
+  </Form.Array>
+);
+
+const List = ({ name }) => (
+  <Form.Array name={name}>
+    {({ idx }) => {
+      return (
+        <InputBox key={idx} name={idx} />
+      );
+    }}
+  </Form.Array>
+);
+
+const ArrayList = ({ name }) => (
+  <Form.Array name={name}>
+    {({ idx }) => {
+      return (
+        <List key={idx} name={idx} />
+      );
+    }}
+  </Form.Array>
+);
+
 const CheckBox = ({ name, domain, ...other }) => (
   <Form.Input name={name} {...other}>
     {form => (domain.map(d => (
@@ -59,7 +104,9 @@ const CheckBox = ({ name, domain, ...other }) => (
           value={d}
           checked={form.get().includes(d)}
           onChange={e => (
-            e.target.checked ? form.update(form.value.concat(e.target.value)) : form.update(form.value.filter(v => v !== e.target.value))
+            e.target.checked
+              ? form.update(form.value.concat(e.target.value))
+              : form.update(form.value.filter(v => v !== e.target.value))
           )}
         />
       </Fragment>
@@ -69,16 +116,37 @@ const CheckBox = ({ name, domain, ...other }) => (
   </Form.Input>
 );
 
+const SchoolArray = ({ name }) => (
+  <Form.Array name={name}>
+    {({ idx }) => {
+      return (
+        <Form.Group key={idx} name={idx}>
+          <InputBox name="name" />
+        </Form.Group>
+      );
+    }}
+  </Form.Array>
+);
+
+const GroupArray = ({ name }) => (
+  <Form.Group name={name}>
+    <SchoolArray name="school" />
+  </Form.Group>
+);
+
 const App = ({ onSubmit, onChange }) => (
   <DomForm onSubmit={() => onSubmit()} onChange={() => onChange()} value={value}>
     {/* <InputBox name="name" /> <br /> */}
     <FormArray name="nameList" InputType={InputBox} />
-    {/* <FormGroup name="spouse" /> */}
-    {/* <CheckBox name="hobby" domain={hobbies} /> */}
-    {/* <FormArray name="spouses" InputType={FormGroup} /> */}
+    <FormGroup name="spouse" />
+    <CheckBox name="hobby" domain={hobbies} />
+    <SpousesGroup name="spouses" />
 
     {/* array within array */}
-    <FormArray name="something" InputType={() => <FormArray name="name" InputType={InputBox} />} />
+    <ArrayList name="something" />
+    {/* Array within a Group */}
+
+    <GroupArray name="almaMater" />
   </DomForm>
 );
 
@@ -111,28 +179,52 @@ describe('Form component Test', () => {
   //   expect(changeInputBox.props().value).toBe('new Value');
   // });
 
-  // test('Form Array on Change', () => {
-  //   const formArray = component.find(FormArray).first();
-  //   const firstInputBox = formArray.find('input').first();
+  test('Form Array on Change', () => {
+    const formArray = component.find(FormArray).first();
+    const firstInputBox = formArray.find('input').first();
 
-  //   firstInputBox.simulate('change', { target: { value: 'change nun' } });
-  //   const changedFormArray = component.find(FormArray).first();
-  //   const changedInputBox = changedFormArray.find('input').first();
+    firstInputBox.simulate('change', { target: { value: 'change nun' } });
+    const changedFormArray = component.find(FormArray).first();
+    const changedInputBox = changedFormArray.find('input').first();
 
-  //   expect(changedInputBox.props().value).toBe('change nun');
-  // });
+    expect(changedInputBox.props().value).toBe('change nun');
+  });
 
-  // test('Form Array and Form Group', () => {
-  //   const formArray = component.find(FormArray).last();
-  //   const formGroup = formArray.find(FormGroup).first();
-  //   const inputBox = formGroup.find('input').first();
+  test('Array of Form Group onChange handler', () => {
+    const formArray = component.find(SpousesGroup).first();
+    const formGroup = formArray.find(FormGroup).first();
+    const inputBox = formGroup.find('input').first();
 
-  //   inputBox.simulate('change', { target: { value: 'change name' } });
+    inputBox.simulate('change', { target: { value: 'change nun' } });
 
-  //   const changedFormArray = component.find(FormArray).last();
-  //   const changedFormGroup = changedFormArray.find(FormGroup).first();
-  //   const changedInputBox = changedFormGroup.find('input').first();
-  //   console.log(changedFormArray.props().value);
-  //   expect(changedInputBox.props().value).toBe('change name');
-  // });
+
+    const changedformArray = component.find(SpousesGroup).first();
+    const changedformGroup = changedformArray.find(FormGroup).first();
+    const changedInputBox = changedformGroup.find('input').first();
+    expect(changedInputBox.props().value).toBe('change nun');
+  });
+
+  test('on Insert Call Test', () => {
+    const formArray = component.find(SpousesGroup).first();
+    const formGroup = formArray.find(FormGroup);
+    const button = component.find('button').first();
+
+    button.simulate('click');
+
+    const changedFormArray = component.find(SpousesGroup).first();
+    const changedFormGroup = changedFormArray.find(FormGroup);
+    expect(changedFormGroup.children().length).toBe(formGroup.children().length + 1);
+  });
+
+  test('on Remove Call Test', () => {
+    const formArray = component.find(SpousesGroup).first();
+    const formGroup = formArray.find(FormGroup);
+    const button = component.find('button').last();
+    console.log(button.props());
+    button.simulate('click');
+
+    // const changedFormArray = component.find(SpousesGroup).first();
+    // const changedFormGroup = changedFormArray.find(FormGroup);
+    // expect(changedFormGroup.children().length).toBe(formGroup.children().length - 1);
+  });
 });

@@ -41,6 +41,7 @@
       {({ name, value, insert, remove }) => {
         const v = value[name];
         const id = v.id || uuid();
+        return (
         <div onMouseEnter={this.showUtils} onMouseExit={this.hideUtils}>
           <Form.Group key={id} name={name}>
             <Form.Input name="id" value={id} />
@@ -52,7 +53,8 @@
             {value.length > 1 && <button onClick={remove} />-</button>}
           </Form.Group>
         </div>
-      )}
+        )
+      }
     </Form.Array>
   );
 
