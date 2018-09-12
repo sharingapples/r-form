@@ -8,7 +8,7 @@ const Array = ({
   <Input name={name} {...other}>
     {(form) => {
       let nodes = [];
-      let state = value || form.get();
+      const state = value || form.get();
       const tmp = {
         get: id => () => state[id],
         update: id => (text) => {
@@ -39,6 +39,7 @@ const Array = ({
         const newState = [
           ...state,
           Object.keys(state[0]).reduce((obj, item) => {
+            // eslint-disable-next-line
             obj[item] = '';
             return obj;
           }, {}),

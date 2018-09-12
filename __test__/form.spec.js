@@ -15,6 +15,8 @@ const value = {
 
 const hobbies = ['Drawing', 'Sports', 'Art'];
 
+const QUALIFICATIONS = ['school', 'hss', 'bachelors', 'masters', 'doctor'];
+
 const DomForm = ({ onSubmit, onChange, ...props }) => (
   <form onSubmit={() => onSubmit()} onChange={() => onChange()}>
     <Form {...props} />
@@ -136,7 +138,7 @@ const GroupArray = ({ name }) => (
 
 const App = ({ onSubmit, onChange }) => (
   <DomForm onSubmit={() => onSubmit()} onChange={() => onChange()} value={value}>
-    {/* <InputBox name="name" /> <br /> */}
+    <InputBox name="name" /> <br />
     <FormArray name="nameList" InputType={InputBox} />
     <FormGroup name="spouse" />
     <CheckBox name="hobby" domain={hobbies} />
@@ -147,6 +149,18 @@ const App = ({ onSubmit, onChange }) => (
     {/* Array within a Group */}
 
     <GroupArray name="almaMater" />
+
+    <Form.Select select={state => state.qualification}>
+      {(qualification) => {
+        const idx = QUALIFICATIONS.indexOf(qualification);
+        const res = [];
+        for (let i = 0; i <= idx; i += 1) {
+          const q = QUALIFICATIONS[idx];
+          res.push(<InputBox key={q} name={q} />);
+        }
+        return res;
+      }}
+    </Form.Select>
   </DomForm>
 );
 
