@@ -220,11 +220,10 @@ describe('Form component Test', () => {
     const formArray = component.find(SpousesGroup).first();
     const formGroup = formArray.find(FormGroup);
     const button = component.find('button').last();
-    console.log(button.props());
     button.simulate('click');
 
-    // const changedFormArray = component.find(SpousesGroup).first();
-    // const changedFormGroup = changedFormArray.find(FormGroup);
-    // expect(changedFormGroup.children().length).toBe(formGroup.children().length - 1);
+    const changedFormArray = component.find(SpousesGroup).first();
+    const changedFormGroup = changedFormArray.find(FormGroup);
+    expect(changedFormGroup.children().length).toBe(formGroup.children().length - 1);
   });
 });

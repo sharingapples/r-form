@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from './Form';
 import Input from './Input';
 
 const Array = ({
-  InputType, name, value, ...other
+  InputType, name, value, auto, children, ...other
 }) => (
   <Input name={name} {...other}>
     {(form) => {
@@ -35,63 +35,34 @@ const Array = ({
         },
 
       };
+      const insert = () => {
+        const newState = [
+          ...state,
+          Object.keys(state[0]).reduce((obj, item) => {
+            obj[item] = '';
+            return obj;
+          }, {}),
+        ];
+        form.update(newState);
+      };
+      const remove = (idx) => {
+        const newState = [
+          ...state.slice(0, idx),
+          ...state.slice(idx + 1),
+        ];
+        form.update(newState);
+      };
+
       return (
-        <ArrayHelper form={tmp} value={state} {...other} />
+        <Provider value={{ form: tmp, state }}>
+          {state.map((n, idx) => children({
+            idx, value, insert, remove,
+          }))}
+        </Provider>
       );
     }
     }
   </Input>
 );
-
-class ArrayHelper extends Component {
-
-  constructor() {
-    super();
-    this.state = {};
-    this.insert = this.insert.bind(this);
-    this.remove = this.remove.bind(this);
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (!state.value) {
-      return {
-        value: props.value,
-      };
-    }
-    return null;
-  }
-
-  insert() {
-    const { value } = this.state;
-    this.setState({
-      value: value.concat(
-        Object.keys(value[0]).reduce((obj, item) => {
-          obj[item] = null;
-          return obj;
-        }, {}),
-      ),
-    });
-  }
-
-  remove(id) {
-    const { value } = this.state;
-    this.setState({
-      value: value
-        .slice(0, id)
-        .concat(value.slice(id + 1)),
-    });
-  }
-
-  render() {
-    const { children, value, form, ...other } = this.props;
-    const { insert, remove } = this;
-    return (
-      <Provider value={{ form, state: this.state }}>
-        {this.state.value.length > 1 && this.state.value.map((n, idx) => children({ idx, value, insert, remove }))}
-      </Provider>
-    );
-  }
-}
-
 
 export default Array;
