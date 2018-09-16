@@ -84,15 +84,19 @@ var _Array = function _Array(_ref) {
     };
 
     var insert = function insert() {
-      var newState = _toConsumableArray(state).concat([[null]]);
+      return function () {
+        var newState = _toConsumableArray(state).concat([[null]]);
 
-      form.update(newState);
+        form.update(newState);
+      };
     };
 
     var remove = function remove(idx) {
-      var newState = _toConsumableArray(state.slice(0, idx)).concat(_toConsumableArray(state.slice(idx + 1)));
+      return function () {
+        var newState = _toConsumableArray(state.slice(0, idx)).concat(_toConsumableArray(state.slice(idx + 1)));
 
-      form.update(newState);
+        form.update(newState);
+      };
     };
 
     var len = state && state.length + 1;
@@ -104,15 +108,15 @@ var _Array = function _Array(_ref) {
     }, state && state.map(function (n, idx) {
       return children({
         idx: idx,
-        value: value,
-        insert: insert,
-        remove: remove
+        value: state,
+        insert: insert(),
+        remove: remove(idx)
       });
     }), auto && children({
       len: len,
-      value: value,
-      insert: insert,
-      remove: remove
+      value: state,
+      insert: insert(),
+      remove: remove(len)
     }), !state && children());
   });
 };

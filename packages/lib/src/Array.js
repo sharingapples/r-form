@@ -35,14 +35,14 @@ const Array = ({
         },
 
       };
-      const insert = () => {
+      const insert = () => () => {
         const newState = [
           ...state,
           [null],
         ];
         form.update(newState);
       };
-      const remove = (idx) => {
+      const remove = idx => () => {
         const newState = [
           ...state.slice(0, idx),
           ...state.slice(idx + 1),
@@ -55,10 +55,10 @@ const Array = ({
       return (
         <Provider value={{ form: tmp, state }}>
           {state && state.map((n, idx) => children({
-            idx, value, insert, remove,
+            idx, value: state, insert: insert(), remove: remove(idx),
           }))}
           {auto && children({
-            len, value, insert, remove,
+            len, value: state, insert: insert(), remove: remove(len),
           })}
           { !state && children()}
         </Provider>

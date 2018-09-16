@@ -46,6 +46,7 @@ function (_PureComponent) {
       var _this$props = this.props,
           child = _this$props.child,
           value = _this$props.value;
+      console.log('ss', value, child);
       return child(value);
     }
   }]);
@@ -56,13 +57,8 @@ function (_PureComponent) {
 var Select = function Select(_ref) {
   var select = _ref.select,
       children = _ref.children;
-  return _react.default.createElement(_Form.Consumer, null, function (_ref2) {
-    var state = _ref2.state;
-    return _react.default.createElement(SelectPure, {
-      child: children,
-      value: select(state)
-    });
-  });
+  console.log(children.props.children);
+  return children();
 };
 
 var _default = Select;
