@@ -8,7 +8,7 @@ const Array = ({
   <Input name={name} {...other}>
     {(form) => {
       let nodes = [];
-      const state = value || form.get();
+      const state = value || form.get() || [null];
       const tmp = {
         get: id => () => state[id],
         update: id => (text) => {
@@ -38,11 +38,7 @@ const Array = ({
       const insert = () => {
         const newState = [
           ...state,
-          Object.keys(state[0]).reduce((obj, item) => {
-            // eslint-disable-next-line
-            obj[item] = '';
-            return obj;
-          }, {}),
+          [null],
         ];
         form.update(newState);
       };
@@ -54,11 +50,17 @@ const Array = ({
         form.update(newState);
       };
 
+      const len = state && state.length + 1;
+
       return (
         <Provider value={{ form: tmp, state }}>
-          {state.map((n, idx) => children({
+          {state && state.map((n, idx) => children({
             idx, value, insert, remove,
           }))}
+          {auto && children({
+            len, value, insert, remove,
+          })}
+          { !state && children()}
         </Provider>
       );
     }

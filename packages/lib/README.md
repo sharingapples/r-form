@@ -23,11 +23,14 @@
             }
             form.update({ friends: newFriends });
           }} />
+          <Form.Select select={state => state[props.name]}>
+            {friends, form => <label>Who are your friends <button onClick={() => form.update(friends.concat(null))} />
+          </Form.Select>
           <Form.Array {...props}>
             {({ name }) => (
               <div>
                 <TextInput name="name" />
-                <DropDown name="gender" />
+                <DropDown name="gender" value="male" />
               </div>
             )}
           </Form.Array>
