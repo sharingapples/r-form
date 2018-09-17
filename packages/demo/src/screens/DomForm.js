@@ -4,12 +4,17 @@ import Form from 'r-form';
 const formRef = React.createRef();
 
 const DomForm = props => (
-  <form onSubmit={(e) => {
-    e.preventDefault();
-    console.log("form", formRef.current.state);
-  }} onChange={() => console.log("change")}>
-    <Form ref={formRef} {...props} />
-  </form>
+  <div className="main-container">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        formRef.current.submit();
+      }}
+      onChange={() => console.log('changes')}
+    >
+      <Form ref={formRef} onSubmit={state => console.log(state)} {...props} />
+    </form>
+  </div>
 );
 
 export default DomForm;

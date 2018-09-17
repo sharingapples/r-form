@@ -1,28 +1,61 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.main-container {
+  width: 100%;
+  height: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.form-container {
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px grey;
+  align-items: center;
+  align-content: center;
 }
 
-.App-title {
-  font-size: 1.5em;
+.form-title {
+  width: 100%;
 }
 
-.App-intro {
-  font-size: large;
+.form-information {
+  margin: 10px;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.inputContainer > *{
+  margin: 10px;
+  display: inline;
+}
+
+.inputSizeFull{
+  width: 100%;
+}
+
+.inputSizeThird {
+  width: 32.85%;
+}
+.inputSizeAuto {
+  width: auto;
+}
+
+.contact {
+  display: inline-block;
+}
+
+.button {
+  border-radius: 50%;
+  padding: 1px 5px;
+  cursor: pointer;
+  margin: 0 3px;
+}
+
+.almaMater-container{
+  margin: 2% 0;
+  padding: 5px;
 }

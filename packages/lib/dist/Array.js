@@ -85,8 +85,9 @@ var _Array = function _Array(_ref) {
 
     var insert = function insert() {
       return function () {
-        var newState = _toConsumableArray(state).concat([[null]]);
+        var newState = _toConsumableArray(state).concat([null]);
 
+        console.log(newState);
         form.update(newState);
       };
     };

@@ -38,7 +38,7 @@ const Array = ({
       const insert = () => () => {
         const newState = [
           ...state,
-          [null],
+          null,
         ];
         form.update(newState);
       };
