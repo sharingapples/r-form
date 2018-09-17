@@ -1,9 +1,14 @@
 import React from 'react';
 import Form from 'r-form';
 
+const formRef = React.createRef();
+
 const DomForm = props => (
-  <form onSubmit={() => console.log("on Submit")} onChange={() => console.log("change")}>
-    <Form {...props} />
+  <form onSubmit={(e) => {
+    e.preventDefault();
+    console.log("form", formRef.current.state);
+  }} onChange={() => console.log("change")}>
+    <Form ref={formRef} {...props} />
   </form>
 );
 

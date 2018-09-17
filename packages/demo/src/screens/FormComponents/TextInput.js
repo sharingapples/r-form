@@ -7,7 +7,7 @@ const TextInput = ({ name, value, validator}) => (
       return (
         <input
           name={name}
-          value={form.get()}
+          value={form.get() || ''}
           onChange={(e) => {
             e.preventDefault();
             form.update(e.target.value);

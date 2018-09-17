@@ -4,6 +4,8 @@ import DomForm from './DomForm';
 import DropDown from './FormComponents/DropDown';
 import TextInput from './FormComponents/TextInput';
 
+import AlmaMater from './AlmaMater';
+
 const QUALIFICATIONS = ['school', 'hss', 'bachelors', 'masters', 'doctor'];
 const QUALIFICATIONS_DISPLAY = ['School', 'Higher Secondary', 'Bachelors', 'Masters', 'Doctor'];
 
@@ -46,7 +48,7 @@ const FormApp = () => (
       }
     </Form.Array>
     Phone Number
-    <Form.Array name="phoneNumber">
+    <Form.Array name="phoneNumber" auto>
       {({ idx, insert, remove }) => {
         return (
           <div key={idx}>
@@ -68,6 +70,24 @@ const FormApp = () => (
       }, {})}
     />
     <br />
+
+    <Form.Select select={state => state.qualification}>
+      {({ state }) => {
+        const idx = QUALIFICATIONS.indexOf(state.qualification);
+        // console.log(idx);
+        const res = [];
+        for (let i = 0; i <= idx; i += 1) {
+          const q = QUALIFICATIONS[i];
+          res.push(<AlmaMater key={q} name={q} />);
+        }
+        // console.log(res);
+        return res;
+      }
+      }
+    </Form.Select>
+
+    <button> Submit </button>
+
   </DomForm>
 );
 

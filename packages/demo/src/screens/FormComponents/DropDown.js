@@ -7,12 +7,13 @@ const DropDown = ({ name, value, options, validator}) => (
       return (
         <select
           name={name}
-          value={form.get() || Object.keys(options)[0]}
+          value={form.get()}
           onChange={(e) => {
             e.preventDefault();
             form.update(e.target.value);
           }}
         >
+          <option />
           { Object.keys(options).map(op => <option key={op} value={op}> {options[op]} </option> )}
         </select>
       );

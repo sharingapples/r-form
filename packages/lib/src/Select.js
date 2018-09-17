@@ -14,14 +14,17 @@ type PropsSelect = {
 
 class SelectPure extends PureComponent<PropsSelectPure> {
   render() {
-    const { child, value } = this.props;
-    return child(value);
+    const { child, value, form } = this.props;
+    return child(form);
   }
 }
 
 const Select = ({ select, children }: PropsSelect) => (
   <Consumer>
-    {({ state }) => <SelectPure child={children} value={select(state)} /> }
+    {
+      ({ state, form }) => (
+        select(state) && <SelectPure child={children} value={select(state)} form={form} />
+      )}
   </Consumer>
 );
 

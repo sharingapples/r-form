@@ -3,12 +3,12 @@ import { Provider } from './Form';
 import Input from './Input';
 
 const Array = ({
-  InputType, name, value, auto, children, ...other
+  name, value, auto, children, defaultValue, ...other
 }) => (
   <Input name={name} {...other}>
     {(form) => {
       let nodes = [];
-      const state = value || form.get() || [null];
+      const state = form.get() || defaultValue || [];
       const tmp = {
         get: id => () => state[id],
         update: id => (text) => {
@@ -50,17 +50,15 @@ const Array = ({
         form.update(newState);
       };
 
-      const len = state && state.length + 1;
-
+      const len = state.length + 1;
       return (
         <Provider value={{ form: tmp, state }}>
           {state && state.map((n, idx) => children({
-            idx, value: state, insert: insert(), remove: remove(idx),
+            name: idx, value: state, insert: insert(), remove: remove(idx),
           }))}
           {auto && children({
-            len, value: state, insert: insert(), remove: remove(len),
+            name: len, value: state, insert: insert(), remove: remove(len),
           })}
-          { !state && children()}
         </Provider>
       );
     }

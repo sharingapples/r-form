@@ -28,18 +28,18 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var _Array = function _Array(_ref) {
-  var InputType = _ref.InputType,
-      name = _ref.name,
+  var name = _ref.name,
       value = _ref.value,
       auto = _ref.auto,
       children = _ref.children,
-      other = _objectWithoutProperties(_ref, ["InputType", "name", "value", "auto", "children"]);
+      defaultValue = _ref.defaultValue,
+      other = _objectWithoutProperties(_ref, ["name", "value", "auto", "children", "defaultValue"]);
 
   return _react.default.createElement(_Input.default, _extends({
     name: name
   }, other), function (form) {
     var nodes = [];
-    var state = value || form.get() || [null];
+    var state = form.get() || defaultValue || [];
     var tmp = {
       get: function get(id) {
         return function () {
@@ -99,7 +99,7 @@ var _Array = function _Array(_ref) {
       };
     };
 
-    var len = state && state.length + 1;
+    var len = state.length + 1;
     return _react.default.createElement(_Form.Provider, {
       value: {
         form: tmp,
@@ -107,17 +107,17 @@ var _Array = function _Array(_ref) {
       }
     }, state && state.map(function (n, idx) {
       return children({
-        idx: idx,
+        name: idx,
         value: state,
         insert: insert(),
         remove: remove(idx)
       });
     }), auto && children({
-      len: len,
+      name: len,
       value: state,
       insert: insert(),
       remove: remove(len)
-    }), !state && children());
+    }));
   });
 };
 
