@@ -10,13 +10,13 @@ const AlmaMater = ({ ...props }) => (
       return (
         <Form.Group key={name} name={name}>
           <div className="almaMater">
-            {props.name}
-            <TextInput name="institute" />
-            <TextInput name="university" />
-            <TextInput name="year" />
-            <TextInput name="grade" />
-            <button type="button" onClick={() => insert()}> + </button>
-            { value.length > 1 && <button type="button" onClick={() => remove()}> - </button> }
+            {String(props.name).toUpperCase().concat(' : ')}
+            <TextInput name="institute" placeholder="Institute" />
+            <TextInput name="university" placeholder="University" />
+            <TextInput name="year" placeholder="Year" />
+            <TextInput name="grade" placeholder="Grade" />
+            <button className="button" type="button" onClick={() => insert()}> + </button>
+            { value.length > 1 && <button className="button" type="button" onClick={() => remove()}> - </button> }
           </div>
         </Form.Group>
       );
