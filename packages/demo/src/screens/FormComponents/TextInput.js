@@ -1,8 +1,8 @@
 import React from 'react';
 import Form from 'r-form';
 
-const TextInput = ({ name, value, placeholder, className, validator}) => (
-  <Form.Input name={name}>
+const TextInput = ({ name, value, placeholder, className, validator, visibility, ...other }) => (
+  <Form.Input name={name} validator={validator} visibility={visibility}>
     {(form) => {
       return (
         <input
@@ -14,6 +14,7 @@ const TextInput = ({ name, value, placeholder, className, validator}) => (
             e.preventDefault();
             form.update(e.target.value);
           }}
+          {...other}
         />
       );
     }}

@@ -42,7 +42,7 @@ const FormApp = () => (
               Age :
             </div>
             <div className="input-contents">
-              <TextInput className="inputSizeThird" name="age" placeholder="Age *" />
+              <TextInput className="inputSizeThird" name="age" placeholder="Age *" validator={[required]} />
             </div>
           </div>
           <div className="input-row">

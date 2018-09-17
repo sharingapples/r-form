@@ -57,9 +57,9 @@ class Form extends Component <Props> {
     const { state, props } = this;
     this.nodes.forEach((iNode) => {
       const { node } = iNode;
-      node.validate(node.props.value);
+      node.validate(node.props.get());
     });
-    // props.onSubmit(state);
+    props.onSubmit(state);
   }
 
   render() {

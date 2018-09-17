@@ -188,6 +188,7 @@ body {
 .submit-button {
   border: 1px solid #A1A1A1;
   background-color: #E5E5E5;
+  cursor: pointer;
   padding: 5px;
   color: #4A4A4A;
   font-family: "Avenir Next";
