@@ -59,7 +59,7 @@ class Form extends Component <Props> {
       const { node } = iNode;
       node.validate(node.props.value);
     });
-    props.onSubmit(state);
+    // props.onSubmit(state);
   }
 
   render() {

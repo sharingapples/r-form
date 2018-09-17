@@ -87,7 +87,6 @@ var _Array = function _Array(_ref) {
       return function () {
         var newState = _toConsumableArray(state).concat([null]);
 
-        console.log(newState);
         form.update(newState);
       };
     };

@@ -3,24 +3,36 @@
   margin: 0;
   font-size: 14px;
 }
-
+select {
+  -webkit-border-radius: 0px;
+}
+body {
+  background: #ededed;
+}
 .main-container {
   width: 100%;
   height: 100%;
 }
 
 .form-container {
-  width: 60%;
+  width: 65%;
   margin: auto;
   padding: 10px;
-  border: 1px solid black;
-  box-shadow: 10px 10px 5px grey;
+  background-color: white;
   align-items: center;
   align-content: center;
 }
 
 .form-title {
-  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -0.08px;
+  line-height: 33px;
+  border-bottom: 1px solid #9B9B9B;
 }
 
 .form-information {
@@ -28,20 +40,96 @@
   padding: 10px;
 }
 
+.input-row {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.input-row > *{
+  display: inline-block;
+}
+
+.input-row > .input-label {
+  width: 10%;
+  font-family: "Avenir Next";
+  color: #4A4A4A;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+}
+
+.input-contents {
+  width: 90%;
+}
+
+.input-row > .input-contents > * {
+  padding: 8px;
+  margin: 0 3px;
+}
+
 .inputContainer > *{
   margin: 10px;
   display: inline;
 }
 
-.inputSizeFull{
+.text-common {
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+}
+
+.gender  {
+  margin: 10px 0px !important;
+  display: inline-block;
+}
+
+.married {
+  margin: 0px 0px !important;
+  display: inline-block;
+}
+
+.contact {
+  padding: 0px !important;
+  width: 29%;
+  margin-right: 23px !important;
+}
+
+.contact-input-wrapper {
   width: 100%;
+  position: relative;
+}
+
+.contact-input{
+  padding: 8px;
+  width: 100%
+}
+
+.contact-button-wrapper{
+  position: absolute;
+  top: 7px;
+  right: -19px;
+}
+
+.marginTopBottom {
+  margin: 15px 0px;
+}
+
+.inputSizeFull{
+  width: 94%;
 }
 
 .inputSizeThird {
-  width: 32.85%;
+  width: 29%;
 }
 .inputSizeAuto {
   width: auto;
+  height: 36px;
+  border: 1px solid #D8D8D8;
+  background-color: #EDEDED;
 }
 
 .contact {
@@ -53,6 +141,8 @@
   padding: 1px 5px;
   cursor: pointer;
   margin: 0 3px;
+  border: 2px solid #979797;
+  font-size: 16px;
 }
 
 .almaMater-container{
@@ -60,6 +150,50 @@
   padding: 5px;
 }
 
+.almaMater-title {
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.06px;
+  line-height: 25px;
+}
+
 .almaMater {
-  margin: 1% 0;
+  margin: 2% 0;
+}
+
+.almabutton{
+  padding: 8px 12px !important;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.almabutton-minus{
+  padding: 8px 12px !important;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.input-label-almaMater {
+  font-size: 12px ;
+  width: 10%;
+  font-family: "Avenir Next";
+  color: #4A4A4A;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+}
+
+.submit-button {
+  border: 1px solid #A1A1A1;
+  background-color: #E5E5E5;
+  padding: 5px;
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+  margin-left: 45%;
 }

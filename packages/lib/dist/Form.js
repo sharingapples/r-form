@@ -137,8 +137,7 @@ function (_Component) {
       this.nodes.forEach(function (iNode) {
         var node = iNode.node;
         node.validate(node.props.value);
-      });
-      props.onSubmit(state);
+      }); // props.onSubmit(state);
     }
   }, {
     key: "render",

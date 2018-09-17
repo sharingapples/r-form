@@ -18,99 +18,144 @@ const FormApp = () => (
   <DomForm>
     <div className="form-container">
       <div className="form-title">
-        <center>Data Collection </center>
+        Data Collection
       </div>
 
       <div className="form-information">
 
         <div>
           <Form.Group name="name">
-            <div className="inputContainer">
-              <span> Name : </span>
-              <TextInput name="firstName" placeholder="First Name *" validator={[required]} />
-              <TextInput name="middleName" placeholder="Middle Name" />
-              <TextInput name="lastName" placeholder="Last Name *" />
+            <div className="input-row">
+              <div className="input-label">
+                Name :
+              </div>
+              <div className="input-contents">
+                <TextInput className="inputSizeThird" name="firstName" placeholder="First Name *" validator={[required]} />
+                <TextInput className="inputSizeThird" name="middleName" placeholder="Middle Name" />
+                <TextInput className="inputSizeThird" name="lastName" placeholder="Last Name *" />
+              </div>
             </div>
           </Form.Group>
           <br />
-          <div className="inputContainer">
-            <span>Age: </span><TextInput name="age" placeholder="Age *" />
+          <div className="input-row">
+            <div className="input-label">
+              Age :
+            </div>
+            <div className="input-contents">
+              <TextInput className="inputSizeThird" name="age" placeholder="Age *" />
+            </div>
           </div>
-          <div className="inputContainer">
-            <span>Gender* : </span><RadioButton className="gender" name="gender" options={genders} />
+          <div className="input-row">
+            <div className="input-label">
+              Gender :
+            </div>
+            <div className="input-contents">
+              <RadioButton className="gender text-common" name="gender" options={genders} />
+            </div>
           </div>
-          <div className="inputContainer">
-            <span> Married* : </span><RadioButton name="married" options={married} />
+          <div className="input-row">
+            <div className="input-label">
+              Married :
+            </div>
+            <div className="input-contents">
+              <RadioButton className="married text-common" name="married" options={married} />
+            </div>
           </div>
           <Form.Select select={state => state.married === 'Married'}>
             {() => (
               <Form.Group name="spouse">
-                <div className="inputContainer">
-                  <span>Spouse : </span>
-                  <TextInput name="name" placeholder="Name *" />
-                  <TextInput name="age" placeholder="Age" />
+                <div className="input-row">
+                  <div className="input-label">
+                    Spouse :
+                  </div>
+                  <div className="input-contents">
+                    <TextInput name="name" placeholder="Name *" />
+                    <TextInput name="age" placeholder="Age" />
+                  </div>
                 </div>
               </Form.Group>)
             }
           </Form.Select>
         </div>
         <br />
-        <div>
-          Address <br />
+        <div className="input-row">
+          <div className="input-label"> Address: </div>
           <Form.Group name="address">
-            <TextInput className="inputSizeFull" name="address1" placeholder="Address *" />
-            <TextInput className="inputSizeFull" name="address2" placeholder="Address (Optional)" />
-            <TextInput className="inputSizeThird" name="city" placeholder="City" />
-            <TextInput className="inputSizeThird" name="state" placeholder="State" />
-            <TextInput className="inputSizeThird" name="zip" placeholder="Zip" />
+            <div className="input-contents">
+              <TextInput className="inputSizeFull" name="address1" placeholder="Address *" />
+            </div>
+            <div className="input-label" />
+            <div className="input-contents">
+              <TextInput className="inputSizeFull" name="address2" placeholder="Address (Optional)" />
+              <TextInput className="inputSizeThird" name="city" placeholder="City" />
+              <TextInput className="inputSizeThird" name="state" placeholder="State" />
+              <TextInput className="inputSizeThird" name="zip" placeholder="Zip" />
+            </div>
           </Form.Group>
         </div>
-        <br />
-        Contact
-        <br />
-        <div className="inputContainer">
-          Email:
-          <Form.Array name="email" auto>
-            {({
-              name, insert, value, remove,
-            }) => (
-              <div className="contact" key={name}>
-                <TextInput name={name} />
-                <button className="button" type="button" onClick={() => insert()}> + </button>
-                {value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
-              </div>
-            )
-            }
-          </Form.Array>
+        <div className="input-row">
+          <div className="input-label">
+            Email :
+          </div>
+          <div className="input-contents marginTopBottom ">
+            <Form.Array name="email" auto>
+              {({
+                name, insert, value, remove,
+              }) => (
+                <div className="contact" key={name}>
+                  <div className="contact-input-wrapper">
+                    <TextInput className="contact-input" name={name} />
+                    <div className="contact-button-wrapper">
+                      <button className="button" type="button" onClick={() => insert()}> + </button>
+                      {value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
+                    </div>
+                  </div>
+                </div>
+              )
+              }
+            </Form.Array>
+          </div>
         </div>
-        <div className="inputContainer">
-          Phone Number :
-          <Form.Array name="phoneNumber" auto>
-            {({
-              name, insert, remove, value,
-            }) => (
-              <div className="contact" key={name}>
-                <TextInput name={name} />
-                <button className="button" type="button" onClick={() => insert()}> + </button>
-                {value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
-              </div>
-            )
-            }
-          </Form.Array>
+        <div className="input-row">
+          <div className="input-label">
+            Phone No :
+          </div>
+          <div className="input-contents marginTopBottom ">
+            <Form.Array name="phoneNumber" auto>
+              {({
+                name, insert, remove, value,
+              }) => (
+                <div className="contact" key={name}>
+                  <div className="contact-input-wrapper">
+                    <TextInput className="contact-input" name={name} />
+                    <div className="contact-button-wrapper">
+                      <button className="button" type="button" onClick={() => insert()}> + </button>
+                      {value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
+                    </div>
+                  </div>
+                </div>
+              )
+              }
+            </Form.Array>
+          </div>
         </div>
         <div className="almaMater-container">
-          Education<br /><br />
-          <div>
-            Select Education Level <br />
-            <DropDown
-              name="qualification"
-              className="inputSizeAuto"
-              defaultValue="None"
-              options={QUALIFICATIONS.reduce((res, qual, idx) => {
-                res[qual] = QUALIFICATIONS_DISPLAY[idx];
-                return res;
-              }, {})}
-            />
+          <div className="almaMater-title"> Education </div>
+          <div className="input-row">
+            <div className="input-label">
+              Level :
+            </div>
+            <div className="input-contents">
+              <DropDown
+                name="qualification"
+                className="inputSizeAuto"
+                defaultValue="None"
+                options={QUALIFICATIONS.reduce((res, qual, idx) => {
+                  res[qual] = QUALIFICATIONS_DISPLAY[idx];
+                  return res;
+                }, {})}
+              />
+            </div>
           </div>
           <Form.Select select={state => state.qualification}>
             {({ state }) => {
@@ -126,8 +171,9 @@ const FormApp = () => (
           </Form.Select>
         </div>
 
-
-        <button type="submit"> Submit </button>
+        <div className="input-row">
+          <button className="submit-button" type="submit"> Submit </button>
+        </div>
       </div>
     </div>
 

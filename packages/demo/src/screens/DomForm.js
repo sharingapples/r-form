@@ -8,11 +8,12 @@ const DomForm = props => (
     <form
       onSubmit={(e) => {
         e.preventDefault();
+
         formRef.current.submit();
       }}
       onChange={() => console.log('changes')}
     >
-      <Form ref={formRef} onSubmit={state => console.log(state)} {...props} />
+      <Form ref={formRef} {...props} />
     </form>
   </div>
 );
