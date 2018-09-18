@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 import type { Node } from 'react';
-import { Consumer } from './Form';
+import { Consumer } from './Group';
 
 type PropsSelectPure = {
   child: (value: any) => Node,

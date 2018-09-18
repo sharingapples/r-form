@@ -1,5 +1,5 @@
 import React from 'react';
-import { Consumer } from './Form';
+import { Consumer } from './Group';
 import InputHelper from './InputHelper';
 
 const Input = ({

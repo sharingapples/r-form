@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Form = require("./Form");
+var _Group = require("./Group");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -57,7 +57,7 @@ function (_PureComponent) {
 var Select = function Select(_ref) {
   var select = _ref.select,
       children = _ref.children;
-  return _react.default.createElement(_Form.Consumer, null, function (_ref2) {
+  return _react.default.createElement(_Group.Consumer, null, function (_ref2) {
     var state = _ref2.state,
         form = _ref2.form;
     return select(state) && _react.default.createElement(SelectPure, {

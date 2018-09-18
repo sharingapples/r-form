@@ -40,6 +40,11 @@ body {
   padding: 10px;
 }
 
+.data-collection {
+  margin: 50px 10px 10px 10px;
+  padding: 10px;
+}
+
 .input-row {
   width: 100%;
   margin: 5px 0;
@@ -197,4 +202,62 @@ body {
   letter-spacing: -0.05px;
   line-height: 22px;
   margin-left: 45%;
+}
+
+
+.data-row {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.data-label {
+  display: inline-block;
+  width: 15%;
+  color: #9B9B9B;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+}
+
+.data-contents {
+  display: inline-block;
+  width: 80%;
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+ td, th {
+  border: 1px solid #D8D8D8;
+}
+.almaMater-Table {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.almaMater-Table tr th {
+  color: #4A4A4A;
+  font-family: "Avenir Next";
+  font-size: 16px;
+  letter-spacing: -0.05px;
+  line-height: 22px;
+  background-color: #EDEDED;
+}
+
+.almaMater-Table tr td {
+  text-align: center;
+  padding: 12px;
+}
+
+.table-label {
+  background-color: #EDEDED;
 }

@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Form = require("./Form");
+var _Group = require("./Group");
 
 var _InputHelper = _interopRequireDefault(require("./InputHelper"));
 
@@ -23,7 +23,7 @@ var Input = function Input(_ref) {
   var name = _ref.name,
       other = _objectWithoutProperties(_ref, ["name"]);
 
-  return _react.default.createElement(_Form.Consumer, null, function (_ref2) {
+  return _react.default.createElement(_Group.Consumer, null, function (_ref2) {
     var form = _ref2.form,
         state = _ref2.state;
     return _react.default.createElement(_InputHelper.default, _extends({
