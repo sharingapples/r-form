@@ -122,18 +122,18 @@ function (_Component) {
 
         var insert = function insert(idx) {
           return function () {
-            var newState = _toConsumableArray(state.slice(0, idx)).concat([null], _toConsumableArray(state.slice(idx)));
+            var newState = _toConsumableArray(state.slice(0, idx)).concat([null], _toConsumableArray(state.slice(idx))); // console.log('Array:',state, newState, idx);
 
-            console.log('Array:', state, newState, idx);
+
             form.update(newState);
           };
         };
 
         var remove = function remove(idx) {
           return function () {
-            var newState = _toConsumableArray(state.slice(0, idx)).concat(_toConsumableArray(state.slice(idx + 1)));
+            var newState = _toConsumableArray(state.slice(0, idx)).concat(_toConsumableArray(state.slice(idx + 1))); // console.log(idx, newState)
 
-            console.log(idx, newState);
+
             form.update(newState);
           };
         };

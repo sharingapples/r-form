@@ -24,14 +24,15 @@ var Input = function Input(_ref) {
       other = _objectWithoutProperties(_ref, ["name"]);
 
   return _react.default.createElement(_Group.Consumer, null, function (_ref2) {
-    var form = _ref2.form,
+    var register = _ref2.register,
+        get = _ref2.get,
+        update = _ref2.update,
         state = _ref2.state;
     return _react.default.createElement(_InputHelper.default, _extends({
       state: state,
-      ref: form.register(name),
-      get: form.get(name),
-      update: form.update(name),
-      next: form.next(name)
+      ref: register(name),
+      get: get(name),
+      update: update(name)
     }, other));
   });
 };

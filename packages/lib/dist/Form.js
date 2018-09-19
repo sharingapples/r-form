@@ -54,13 +54,14 @@ function (_Component) {
     _this.state = {
       data: {}
     };
-    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onUpdate = _this.onUpdate.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(Form, [{
-    key: "onChange",
-    value: function onChange(data) {
+    key: "onUpdate",
+    value: function onUpdate(data) {
+      console.log('data', data);
       this.setState({
         data: data
       });
@@ -68,6 +69,8 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var data = this.state.data;
 
       var _this$props = this.props,
@@ -76,10 +79,12 @@ function (_Component) {
           value = _this$props.value,
           other = _objectWithoutProperties(_this$props, ["onSubmit", "onChange", "value"]);
 
-      console.log(this.props);
       return _react.default.createElement(_Group.default, _extends({
         name: ROOT,
-        onChange: this.onChange
+        value: data,
+        onChange: function onChange(v) {
+          return _this2.onUpdate(v);
+        }
       }, other));
     }
   }]);

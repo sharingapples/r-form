@@ -70,17 +70,34 @@ function (_Component) {
   }
 
   _createClass(Group, [{
+    key: "update",
+    value: function update(next) {
+      var _this2 = this;
+
+      return function (name) {
+        return function (text) {
+          var value = _this2.props.value;
+
+          var newValue = _objectSpread({}, value, _defineProperty({}, name, text));
+
+          console.log('Prev Value', value);
+          console.log('New Value', newValue);
+          next(newValue);
+        };
+      };
+    }
+  }, {
     key: "register",
     value: function register(name) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (node) {
         if (node === null) {
-          _this2.nodes = _this2.nodes.filter(function (n) {
+          _this3.nodes = _this3.nodes.filter(function (n) {
             return n.name === name;
           });
         } else {
-          _this2.nodes = _this2.nodes.concat({
+          _this3.nodes = _this3.nodes.concat({
             name: name,
             node: node
           });
@@ -90,43 +107,10 @@ function (_Component) {
   }, {
     key: "get",
     value: function get(name) {
-      var _this3 = this;
-
-      return function () {
-        return _this3.props.value && _this3.props.value[name];
-      };
-    }
-  }, {
-    key: "update",
-    value: function update(name) {
       var _this4 = this;
 
-      return function (text) {
-        var value = _this4.props.value;
-        var onChange = _this4.props.onChange;
-
-        var newValue = _objectSpread({}, value, _defineProperty({}, name, text));
-
-        console.log(_this4.props);
-        onChange(newValue); // this.setState((prevState) => {
-        //   console.log('Update', name, prevState.data, text, v);
-        //   if (typeof v === 'object') {
-        //     return {
-        //       data: {
-        //         ...prevState.data,
-        //         [name]: text,
-        //         ...v,
-        //       },
-        //     };
-        //   }
-        //   return {
-        //     data: {
-        //       ...prevState.data,
-        //       [name]: text,
-        //     },
-        //   };
-        // });
-        // this.nodes.filter(n => n.name === name).forEach(n => n.node.validate(text));
+      return function () {
+        return _this4.props.value && _this4.props.value[name];
       };
     }
   }, {
@@ -163,6 +147,8 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this6 = this;
+
       var _this$props = this.props,
           onSubmit = _this$props.onSubmit,
           onChange = _this$props.onChange,
@@ -173,24 +159,39 @@ function (_Component) {
 
       this.register = this.register.bind(this);
       this.get = this.get.bind(this);
-      this.next = this.next.bind(this);
-      this.update = this.update.bind(this);
-      this.submit = this.submit.bind(this);
-      console.log('Rendering form', value, this.props);
+      this.next = this.next.bind(this); // this.update = this.update.bind(this);
+
+      this.submit = this.submit.bind(this); // console.log('Rendering form', value, this.props);
 
       if (name === _Form.ROOT) {
+        var update = this.update(onChange);
         return _react.default.createElement(Provider, _extends({
           value: {
-            form: this,
+            update: update,
+            register: this.register,
+            get: this.get,
             state: value
           }
         }, other));
-      } // return (
-      //   <Input name={name} {...other}>
-      //     <Provider value={{ form: this, state: value }}  {...other} />
-      //   </Input>
-      // );
+      }
 
+      return _react.default.createElement(_Input.default, {
+        name: name
+      }, function (form) {
+        var update = _this6.update(form.update);
+
+        console.log(form.get(name), name);
+        return _react.default.createElement(Provider, _extends({
+          value: {
+            update: update,
+            register: _this6.register,
+            get: function get() {
+              return form.get;
+            },
+            state: form.get(name)
+          }
+        }, other));
+      });
     }
   }]);
 

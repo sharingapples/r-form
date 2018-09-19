@@ -52,7 +52,7 @@ class Array extends Component {
               null,
               ...state.slice(idx),
             ];
-            console.log('Array:',state, newState, idx);
+            // console.log('Array:',state, newState, idx);
             form.update(newState);
           };
           const remove = idx => () => {
@@ -60,7 +60,7 @@ class Array extends Component {
               ...state.slice(0, idx),
               ...state.slice(idx + 1),
             ];
-            console.log(idx, newState)
+            // console.log(idx, newState)
             form.update(newState);
           };
           return (

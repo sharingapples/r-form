@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import Group from './Group';
 
 export const ROOT = Math.floor((Math.random() * 100) + 1);
-class Form extends Component {
+
+type Props = {
+  onChange?: () => {},
+}
+
+class Form extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
     };
-    this.onChange = this.onChange.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
   }
 
-  onChange(data) {
+  onUpdate(data) {
+    console.log('data', data);
     this.setState({
       data,
     });
@@ -19,10 +25,11 @@ class Form extends Component {
 
   render() {
     const { data } = this.state;
-    const { onSubmit, onChange, value, ...other } = this.props;
-    console.log(this.props);
+    const {
+      onSubmit, onChange, value, ...other
+    } = this.props;
     return (
-      <Group name={ROOT} onChange={this.onChange} {...other} />
+      <Group name={ROOT} value={data} onChange={v => this.onUpdate(v)} {...other} />
     );
   }
 }
