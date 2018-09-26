@@ -65,6 +65,7 @@ This is a function provided by the form library to create an input component for
 
 A simple text input :
 
+	import React from 'react';
 	import { createInput } from 'r-form';
 
 	const createProps = (owner, { value }) => ({
@@ -85,6 +86,7 @@ createInput is a *currying* function,  the first function takes the function par
 A group component is as the name suggests a grouping component for similar kind of relative component. The group component for say maybe NAME which contains , firstName , middleName and then lastName or for ADDRESS . These components are related to name and are part of the name they can be grouped together which simplifies the data access , now we can simply call name.firstName to get the first name.
 <br> **Example :**  <br>
 
+	import React from 'react';
 	import { Group } from 'r-form';
 	import TextInput from './TextInput';
 
@@ -103,11 +105,12 @@ An array component is the collection of the components wrapped within itself.  S
 
  - name : the unique name for the children within an array , as it is required for individual component.
  - value : the whole state/ value of the particular array component.
- - insert : to add  the component in the dom,
- - remove : to remove the particular component
+ - insert : to add  the component in the dom,   an extra parameter can be added at function call a boolean value to determine whether to add the next component after the current one.
+ - remove : to remove the particular component.
 
 <br> **Example :**  <br>
 
+	import React from 'react';
 	import { Array } from 'r-form';
 	import TextInput from './TextInput';
 
@@ -126,13 +129,27 @@ An array component is the collection of the components wrapped within itself.  S
 	);
 
 	export default ArrayForm;
-Parameters in Array :
 
-
- - children: the children component of
- - name : this acts as the individual naming for the component withing , as the child are rendered as shown above
 
 ### - **Select**
+This component is the dynamic component that is dependent  on the form state and a select props that is a function which tells when to display this particular component. <br>
+
+<br> **Example :**  <br>
+
+	import React from 'react';
+	import { Select } from 'r-form';
+	import ArrayForm from './ArrayForm';
+
+	const SelectForm = () =>(
+	  <Select select={state => state.name.length > 0 }>
+	    <ArrayForm />
+      </Select>
+	);
+
+	export default SelectForm;
+
+Props :
+ - select ( required ) : is a function , which returns a boolean value that is dependent on the state of the form , such as in example if the name has more than 1 word this particular component is then rendered
 
 ### - **Validation Functions**
 

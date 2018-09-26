@@ -108,7 +108,7 @@ const FormApp = ({ onClick }) => (
                   <div className="contact-input-wrapper">
                     <TextInput className="contact-input" name={name} />
                     <div className="contact-button-wrapper">
-                      <button className="button" type="button" onClick={() => insert()}> + </button>
+                      <button className="button" type="button" onClick={() => insert(true)}> + </button>
                       {value && value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
                     </div>
                   </div>

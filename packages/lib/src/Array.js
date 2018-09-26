@@ -47,13 +47,20 @@ class ArrayComponent extends Component<Props> {
   }
 
   insert(idx) {
-    return () => {
-      const { value, onChange } = this.props;
-      const updatedValue = value ? [
+    return (after = false) => {
+      const { value, onChange, auto } = this.props;
+      let updatedValue = after ? [
+        ...value.slice(0, idx + 1),
+        null,
+        ...value.slice(idx + 1),
+      ] : [
         ...value.slice(0, idx),
         null,
         ...value.slice(idx),
-      ] : [null];
+      ];
+      if (value.length === 0) {
+        updatedValue = auto && updatedValue.concat(null);
+      }
       onChange(updatedValue);
     };
   }
