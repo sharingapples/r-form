@@ -50,12 +50,12 @@ This is the part where we call the form container that we created above named Do
 	)
 
 **NOTE :**
-	Input Component used inside the form must have
-		 - name : the data are managed as an object so to set and get the data a name is required
-		 **Optional :**
-		 - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on.
-		 - onChange: user can pass an onChange event.
-		 - onError: call to a function that is called if validation is failed.
+	Input Component used inside the form must have <br>
+		 - name : the data are managed as an object so to set and get the data a name is required <br>
+		 **Optional :** <br>
+		 - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on. <br>
+		 - onChange: user can pass an onChange event. <br>
+		 - onError: call to a function that is called if validation is failed. <br>
 
 
 
