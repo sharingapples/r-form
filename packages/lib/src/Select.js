@@ -5,7 +5,7 @@ import { Consumer } from './Group';
 
 type PropsSelectPure = {
   child: (value: any) => Node,
-  value: any,
+  state: {},
 }
 type PropsSelect = {
   children: (value: any) => Node,
@@ -14,16 +14,17 @@ type PropsSelect = {
 
 class SelectPure extends PureComponent<PropsSelectPure> {
   render() {
-    const { child, value, form } = this.props;
-    return child(form);
+    const { child, state } = this.props;
+    return child({ state });
   }
 }
 
 const Select = ({ select, children }: PropsSelect) => (
   <Consumer>
     {
-      ({ state, form }) => (
-        select(state) && <SelectPure child={children} value={select(state)} form={form} />
+      ({ owner, state }) => (
+        state && select(state) && (
+        <SelectPure child={children} value={select(state)} state={state} owner={owner} />)
       )}
   </Consumer>
 );

@@ -1,16 +1,16 @@
 import Form from './Form';
-import Input from './Input';
+import createInput from './Input';
 import Group from './Group';
 import Array from './Array';
 import Select from './Select';
 
-Form.Input = Input;
+Form.createInput = createInput;
 Form.Group = Group;
 Form.Array = Array;
 Form.Select = Select;
 
 export {
-  Input,
+  createInput,
   Group,
   Array,
   Select,

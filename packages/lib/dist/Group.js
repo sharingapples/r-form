@@ -9,8 +9,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Input = _interopRequireDefault(require("./Input"));
 
-var _Form = require("./Form");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -71,132 +69,89 @@ function (_Component) {
 
   _createClass(Group, [{
     key: "update",
-    value: function update(next) {
-      var _this2 = this;
+    value: function update(name, text) {
+      var _this$props = this.props,
+          onChange = _this$props.onChange,
+          value = _this$props.value;
 
-      return function (name) {
-        return function (text) {
-          var value = _this2.props.value;
+      var updatedValue = _objectSpread({}, value, _defineProperty({}, name, text));
 
-          var newValue = _objectSpread({}, value, _defineProperty({}, name, text));
-
-          console.log('Prev Value', value);
-          console.log('New Value', newValue);
-          next(newValue);
-        };
-      };
+      onChange(updatedValue);
     }
   }, {
     key: "register",
-    value: function register(name) {
-      var _this3 = this;
-
-      return function (node) {
-        if (node === null) {
-          _this3.nodes = _this3.nodes.filter(function (n) {
-            return n.name === name;
-          });
-        } else {
-          _this3.nodes = _this3.nodes.concat({
-            name: name,
-            node: node
-          });
-        }
-      };
+    value: function register(name, node) {
+      if (node === null) {
+        this.nodes = this.nodes.filter(function (n) {
+          return n.name === name;
+        });
+      } else {
+        this.nodes = this.nodes.concat({
+          name: name,
+          node: node
+        });
+      }
     }
   }, {
     key: "get",
     value: function get(name) {
-      var _this4 = this;
-
-      return function () {
-        return _this4.props.value && _this4.props.value[name];
-      };
+      var value = this.props.value;
+      return value && value[name];
     }
   }, {
-    key: "next",
-    value: function next(name) {
-      var _this5 = this;
-
-      return function () {
-        var idx = _this5.nodes.findIndex(function (n) {
-          return n.name === name;
-        }) + 1;
-
-        if (idx < _this5.nodes.length) {
-          _this5.nodes[idx].node.focus();
-        }
-      };
-    }
-  }, {
-    key: "submit",
-    value: function submit() {
-      var props = this.props;
-      var state = {};
+    key: "validate",
+    value: function validate() {
+      var _this$props2 = this.props,
+          validator = _this$props2.validator,
+          state = _this$props2.state,
+          value = _this$props2.value;
       this.nodes.forEach(function (iNode) {
-        var node = iNode.node,
-            name = iNode.name;
-        node.validate(node.props.get());
-
-        if (node.props.get() !== undefined) {
-          state[name] = node.props.get();
-        }
+        var node = iNode.node;
+        node.validate();
       });
-      props.onSubmit(state);
+      var validationValue = value;
+
+      if (validator) {
+        if (Array.isArray(validator)) {
+          validator.forEach(function (v) {
+            return v(validationValue, state);
+          });
+        } else {
+          validator(validationValue, state);
+        }
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this$props3 = this.props,
+          value = _this$props3.value,
+          onSubmit = _this$props3.onSubmit,
+          onChange = _this$props3.onChange,
+          other = _objectWithoutProperties(_this$props3, ["value", "onSubmit", "onChange"]);
 
-      var _this$props = this.props,
-          onSubmit = _this$props.onSubmit,
-          onChange = _this$props.onChange,
-          value = _this$props.value,
-          name = _this$props.name,
-          other = _objectWithoutProperties(_this$props, ["onSubmit", "onChange", "value", "name"]); // console.log('Render state', this.state.data);
-
-
-      this.register = this.register.bind(this);
-      this.get = this.get.bind(this);
-      this.next = this.next.bind(this); // this.update = this.update.bind(this);
-
-      this.submit = this.submit.bind(this); // console.log('Rendering form', value, this.props);
-
-      if (name === _Form.ROOT) {
-        var update = this.update(onChange);
-        return _react.default.createElement(Provider, _extends({
-          value: {
-            update: update,
-            register: this.register,
-            get: this.get,
-            state: value
-          }
-        }, other));
-      }
-
-      return _react.default.createElement(_Input.default, {
-        name: name
-      }, function (form) {
-        var update = _this6.update(form.update);
-
-        console.log(form.get(name), name);
-        return _react.default.createElement(Provider, _extends({
-          value: {
-            update: update,
-            register: _this6.register,
-            get: function get() {
-              return form.get;
-            },
-            state: form.get(name)
-          }
-        }, other));
-      });
+      return _react.default.createElement(Provider, _extends({
+        value: {
+          owner: this,
+          state: value
+        }
+      }, other));
     }
   }]);
 
   return Group;
 }(_react.Component);
 
-var _default = Group;
+var createProps = function createProps(owner, _ref) {
+  var value = _ref.value;
+  return {
+    onChange: function onChange(v) {
+      return owner.update(v);
+    },
+    value: value || {}
+  };
+};
+
+var _default = (0, _Input.default)(createProps)(Group);
+
 exports.default = _default;

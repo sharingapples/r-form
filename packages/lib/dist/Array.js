@@ -19,6 +19,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -26,10 +30,6 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -47,116 +47,164 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var _Array =
+var ArrayComponent =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Array, _Component);
+  _inherits(ArrayComponent, _Component);
 
-  function Array() {
+  function ArrayComponent() {
     var _this;
 
-    _classCallCheck(this, Array);
+    _classCallCheck(this, ArrayComponent);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Array).call(this));
-    _this.state = {};
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ArrayComponent).call(this));
+    _this.nodes = [];
     return _this;
   }
 
-  _createClass(Array, [{
+  _createClass(ArrayComponent, [{
+    key: "update",
+    value: function update(name, text) {
+      var _this$props = this.props,
+          onChange = _this$props.onChange,
+          value = _this$props.value,
+          auto = _this$props.auto;
+      var updatedValue = value ? value.map(function (v, idx) {
+        if (name === idx) {
+          return text;
+        }
+
+        return v;
+      }) : [text];
+
+      if (value && name === value.length) {
+        updatedValue = updatedValue.concat(text);
+      }
+
+      if (auto && !updatedValue.some(function (v) {
+        return v === '' || v === {} || v === null || v === undefined;
+      })) {
+        onChange(updatedValue.concat([null]));
+      } else {
+        onChange(updatedValue);
+      }
+    }
+  }, {
+    key: "get",
+    value: function get(idx) {
+      var value = this.props.value;
+      return value && value[idx];
+    }
+  }, {
+    key: "register",
+    value: function register(name, node) {
+      if (node === null) {
+        this.nodes = this.nodes.filter(function (n) {
+          return n.name === name;
+        });
+      } else {
+        this.nodes = this.nodes.concat({
+          name: name,
+          node: node
+        });
+      }
+    }
+  }, {
+    key: "insert",
+    value: function insert(idx) {
+      var _this2 = this;
+
+      return function () {
+        var _this2$props = _this2.props,
+            value = _this2$props.value,
+            onChange = _this2$props.onChange;
+        var updatedValue = value ? _toConsumableArray(value.slice(0, idx)).concat([null], _toConsumableArray(value.slice(idx))) : [null];
+        onChange(updatedValue);
+      };
+    }
+  }, {
+    key: "remove",
+    value: function remove(idx) {
+      var _this3 = this;
+
+      return function () {
+        var _this3$props = _this3.props,
+            value = _this3$props.value,
+            onChange = _this3$props.onChange;
+
+        var updatedValue = _toConsumableArray(value.slice(0, idx)).concat(_toConsumableArray(value.slice(idx + 1)));
+
+        onChange(updatedValue);
+      };
+    }
+  }, {
+    key: "validate",
+    value: function validate() {
+      var _this$props2 = this.props,
+          validator = _this$props2.validator,
+          state = _this$props2.state,
+          value = _this$props2.value;
+      this.nodes.forEach(function (iNode) {
+        var node = iNode.node;
+        node.validate();
+      });
+      var validationValue = value;
+
+      if (validator) {
+        if (Array.isArray(validator)) {
+          validator.forEach(function (v) {
+            return v(validationValue, state);
+          });
+        } else {
+          validator(validationValue, state);
+        }
+      }
+
+      return value;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          name = _this$props.name,
-          auto = _this$props.auto,
-          children = _this$props.children,
-          defaultValue = _this$props.defaultValue,
-          other = _objectWithoutProperties(_this$props, ["name", "auto", "children", "defaultValue"]);
+      var _this4 = this;
 
-      return _react.default.createElement(_Input.default, _extends({
-        name: name
-      }, other), function (form) {
-        var nodes = [];
-        var state = form.get() || defaultValue || auto && [null] || [];
-        var tmp = {
-          get: function get(id) {
-            return function () {
-              return state[id];
-            };
-          },
-          update: function update(id) {
-            return function (text) {
-              var newState = state.map(function (v, idx) {
-                if (id === idx) {
-                  return text;
-                }
+      var _this$props3 = this.props,
+          name = _this$props3.name,
+          auto = _this$props3.auto,
+          children = _this$props3.children,
+          value = _this$props3.value,
+          other = _objectWithoutProperties(_this$props3, ["name", "auto", "children", "value"]);
 
-                return v;
-              });
-              form.update(newState);
-            };
-          },
-          next: function next(id) {
-            return function () {
-              var idx = id + 1;
-
-              if (idx < nodes.length) {
-                nodes[idx].node.focus();
-              }
-            };
-          },
-          register: function register(id) {
-            return function (node) {
-              if (node === null) {
-                nodes = nodes.filter(function (n) {
-                  return n.id === id;
-                });
-              } else {
-                nodes = nodes.concat({
-                  id: id,
-                  node: node
-                });
-              }
-            };
-          }
-        };
-
-        var insert = function insert(idx) {
-          return function () {
-            var newState = _toConsumableArray(state.slice(0, idx)).concat([null], _toConsumableArray(state.slice(idx))); // console.log('Array:',state, newState, idx);
-
-
-            form.update(newState);
-          };
-        };
-
-        var remove = function remove(idx) {
-          return function () {
-            var newState = _toConsumableArray(state.slice(0, idx)).concat(_toConsumableArray(state.slice(idx + 1))); // console.log(idx, newState)
-
-
-            form.update(newState);
-          };
-        };
-
-        return _react.default.createElement(_Group.Provider, {
-          value: {
-            form: tmp,
-            state: state
-          }
-        }, state && state.map(function (n, idx) {
-          return children({
-            name: idx,
-            value: state,
-            insert: insert(idx),
-            remove: remove(idx)
-          });
-        }));
-      });
+      var adjusted = auto && value.length === 0 ? [null] : value;
+      return _react.default.createElement(_Group.Provider, _extends({
+        value: {
+          owner: this,
+          state: value
+        }
+      }, other), adjusted.map(function (n, idx) {
+        return children({
+          name: idx,
+          value: value,
+          insert: _this4.insert(idx),
+          remove: _this4.remove(idx)
+        });
+      }));
     }
   }]);
 
-  return Array;
+  return ArrayComponent;
 }(_react.Component);
 
-var _default = _Array;
+var createProps = function createProps(owner, _ref) {
+  var value = _ref.value,
+      defaultValue = _ref.defaultValue;
+  return {
+    onChange: function onChange(v) {
+      return owner.update(v);
+    },
+    value: value || defaultValue || []
+  };
+};
+
+var _default = (0, _Input.default)(createProps)(ArrayComponent);
+
 exports.default = _default;

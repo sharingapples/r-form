@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Input", {
+Object.defineProperty(exports, "createInput", {
   enumerable: true,
   get: function get() {
     return _Input.default;
@@ -41,7 +41,7 @@ var _Select = _interopRequireDefault(require("./Select"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_Form.default.Input = _Input.default;
+_Form.default.createInput = _Input.default;
 _Form.default.Group = _Group.default;
 _Form.default.Array = _Array.default;
 _Form.default.Select = _Select.default;

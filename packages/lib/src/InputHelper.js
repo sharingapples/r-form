@@ -13,52 +13,27 @@ type Props = {
 };
 
 
-class InputHelper extends Component<Props> {
-  state = {
-    visible: false,
-  };
-
-  static getDerivedStateFromProps(props) {
-    const { visibility, state } = props;
-    if (visibility === undefined || visibility === true) {
-      return {
-        visible: true,
-      };
-    }
-
-    return {
-      visible: typeof visibility === 'function' ? visibility(state) : (visibility === undefined || visibility),
-    };
+class InputHelper extends Component {
+  componentDidMount() {
+    owner.register(this.props.name, this);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const value = this.props.get();
-    const { visible } = this.state;
-    const check = nextProps.value !== value || nextState.visible !== visible;
-    return check;
+  componentWillUnmount() {
+    owner.register(this.props.name, null);
   }
 
   validate(value) {
-    const { validator, state } = this.props;
-    const validationValue = value;
-    if (validator) {
-      if (Array.isArray(validator)) {
-        validator.forEach(v => v.default(validationValue, state));
-      } else {
-        validator.default(validationValue, state);
-      }
+    if (props.validators) {
+
     }
   }
 
   render() {
-    const { children, visibility, ...form } = this.props;
-    const { visible } = this.state;
-    if (!visible) {
-      return null;
-    }
-    return children(form);
+    return (
+      <InputComponent
+        ref={forwardedRef}
+        update={owner.update(this.name)}
+      />);
   }
 }
-
-
 export default InputHelper;

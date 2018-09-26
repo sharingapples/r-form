@@ -1,80 +1,115 @@
 import React, { Component } from 'react';
 import { Provider } from './Group';
-import Input from './Input';
+import createInput from './Input';
 
+type Props = {
+  onChange: (string) => any,
+};
 
-class Array extends Component {
+class ArrayComponent extends Component<Props> {
   constructor() {
     super();
-    this.state = {};
+    this.nodes = [];
   }
 
+  update(name, text) {
+    const { onChange, value, auto } = this.props;
+    let updatedValue = value ? value.map((v, idx) => {
+      if (name === idx) {
+        return text;
+      }
+      return v;
+    })
+      : [text];
+
+    if (value && (name === value.length)) {
+      updatedValue = updatedValue.concat(text);
+    }
+
+    if (auto && !updatedValue.some(v => v === '' || v === {} || v === null || v === undefined)) {
+      onChange(updatedValue.concat([null]));
+    } else {
+      onChange(updatedValue);
+    }
+  }
+
+  get(idx) {
+    const { value } = this.props;
+    return value && value[idx];
+  }
+
+  register(name, node) {
+    if (node === null) {
+      this.nodes = this.nodes.filter(n => n.name === name);
+    } else {
+      this.nodes = this.nodes.concat({ name, node });
+    }
+  }
+
+  insert(idx) {
+    return () => {
+      const { value, onChange } = this.props;
+      const updatedValue = value ? [
+        ...value.slice(0, idx),
+        null,
+        ...value.slice(idx),
+      ] : [null];
+      onChange(updatedValue);
+    };
+  }
+
+  remove(idx) {
+    return () => {
+      const { value, onChange } = this.props;
+      const updatedValue = [
+        ...value.slice(0, idx),
+        ...value.slice(idx + 1),
+      ];
+      onChange(updatedValue);
+    };
+  }
+
+  validate() {
+    const {
+      validator, state, value,
+    } = this.props;
+
+    this.nodes.forEach((iNode) => {
+      const { node } = iNode;
+      node.validate();
+    });
+
+    const validationValue = value;
+    if (validator) {
+      if (Array.isArray(validator)) {
+        validator.forEach(v => v(validationValue, state));
+      } else {
+        validator(validationValue, state);
+      }
+    }
+    return value;
+  }
 
   render() {
     const {
-      name, auto, children, defaultValue, ...other
+      name, auto, children, value, ...other
     } = this.props;
 
-    return (
-      <Input name={name} {...other}>
-        {(form) => {
-          let nodes = [];
-          const state = form.get() || defaultValue || (auto && [null]) || [];
-          const tmp = {
-            get: id => () => state[id],
-            update: id => (text) => {
-              const newState = state.map((v, idx) => {
-                if (id === idx) {
-                  return text;
-                }
-                return v;
-              });
-              form.update(newState);
-            },
-            next: id => () => {
-              const idx = id + 1;
-              if (idx < nodes.length) {
-                nodes[idx].node.focus();
-              }
-            },
-            register: id => (node) => {
-              if (node === null) {
-                nodes = nodes.filter(n => n.id === id);
-              } else {
-                nodes = nodes.concat({ id, node });
-              }
-            },
+    const adjusted = auto && value.length === 0 ? [null] : value;
 
-          };
-          const insert = idx => () => {
-            const newState = [
-              ...state.slice(0, idx),
-              null,
-              ...state.slice(idx),
-            ];
-            // console.log('Array:',state, newState, idx);
-            form.update(newState);
-          };
-          const remove = idx => () => {
-            const newState = [
-              ...state.slice(0, idx),
-              ...state.slice(idx + 1),
-            ];
-            // console.log(idx, newState)
-            form.update(newState);
-          };
-          return (
-            <Provider value={{ form: tmp, state }}>
-              {state && state.map((n, idx) => children({
-                name: idx, value: state, insert: insert(idx), remove: remove(idx),
-              }))}
-            </Provider>
-          );
-        }
-        }
-      </Input>
+    return (
+      <Provider value={{ owner: this, state: value }} {...other}>
+        {adjusted.map((n, idx) => children({
+          name: idx, value, insert: this.insert(idx), remove: this.remove(idx),
+        }))}
+      </Provider>
     );
   }
 }
 
-export default Array;
+const createProps = (owner, { value, defaultValue }) => ({
+  onChange: v => owner.update(v),
+  value: value || defaultValue || [],
+});
+
+export default createInput(createProps)(ArrayComponent);
