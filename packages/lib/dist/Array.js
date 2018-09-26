@@ -139,14 +139,14 @@ function (_Component) {
     }
   }, {
     key: "validate",
-    value: function validate() {
+    value: function validate(value) {
       var _this$props2 = this.props,
           validator = _this$props2.validator,
-          state = _this$props2.state,
-          value = _this$props2.value;
+          state = _this$props2.state;
       this.nodes.forEach(function (iNode) {
-        var node = iNode.node;
-        node.validate();
+        var node = iNode.node,
+            name = iNode.name;
+        node.validate(value && value[name]);
       });
       var validationValue = value;
 

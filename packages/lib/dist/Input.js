@@ -70,14 +70,13 @@ function createInput(mapFormToProps) {
         }
       }, {
         key: "validate",
-        value: function validate() {
+        value: function validate(value) {
           var _this$props3 = this.props,
               validator = _this$props3.validator,
-              state = _this$props3.state,
-              value = _this$props3.value;
+              state = _this$props3.state;
 
           if (this.reference && this.reference.validate) {
-            this.reference.validate();
+            this.reference.validate(value);
           }
 
           var validationValue = value;
@@ -106,10 +105,13 @@ function createInput(mapFormToProps) {
 
           var params = {
             update: function update(value) {
-              _this.validate();
+              _this.validate(value);
 
               owner.update(name, value);
-              console.log(_this.props);
+
+              if (other.onChange) {
+                other.onChange(value);
+              }
             }
           };
 

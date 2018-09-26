@@ -47,7 +47,7 @@ class Form extends Component<Props> {
     const formState = {};
     this.nodes.forEach((iNode) => {
       const { name, node } = iNode;
-      const v = node.validate();
+      const v = node.validate(this.state[name]);
       if (name in this.state) {
         formState[name] = v;
       }

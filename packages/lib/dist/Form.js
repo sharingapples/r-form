@@ -106,7 +106,7 @@ function (_Component) {
       this.nodes.forEach(function (iNode) {
         var name = iNode.name,
             node = iNode.node;
-        var v = node.validate();
+        var v = node.validate(_this3.state[name]);
 
         if (name in _this3.state) {
           formState[name] = v;

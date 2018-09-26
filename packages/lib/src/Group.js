@@ -34,14 +34,14 @@ class Group extends Component <Props> {
     return value && value[name];
   }
 
-  validate() {
+  validate(value) {
     const {
-      validator, state, value,
+      validator, state,
     } = this.props;
 
     this.nodes.forEach((iNode) => {
-      const { node } = iNode;
-      node.validate();
+      const { node, name } = iNode;
+      node.validate(value && value[name]);
     });
 
     const validationValue = value;

@@ -14,12 +14,12 @@ function createInput(mapFormToProps) {
         owner.register(name, null);
       }
 
-      validate() {
+      validate(value) {
         const {
-          validator, state, value,
+          validator, state,
         } = this.props;
         if (this.reference && this.reference.validate) {
-          this.reference.validate();
+          this.reference.validate(value);
         }
         const validationValue = value;
         if (validator) {
@@ -36,9 +36,11 @@ function createInput(mapFormToProps) {
         const { name, owner, ...other } = this.props;
         const params = {
           update: (value) => {
-            this.validate();
+            this.validate(value);
             owner.update(name, value);
-            console.log(this.props);
+            if (other.onChange) {
+              other.onChange(value);
+            }
           },
         };
         const inputProps = { ...other, ...mapFormToProps(params, this.props) };

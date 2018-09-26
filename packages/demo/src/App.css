@@ -141,6 +141,10 @@ body {
   display: inline-block;
 }
 
+input[type="radio"] {
+  margin-right: 10px;
+}
+
 .button {
   border-radius: 50%;
   padding: 1px 5px;
