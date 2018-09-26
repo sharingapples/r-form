@@ -17,7 +17,7 @@ The components that provided by r-form library are :
 ### - **Form**
 
 The main wrapper for the form component itself. We pass the children to be rendered within the form. So we call the a component that wraps its children within and then passes it to the form.  <br> **Example :**  <br>
-Firstly we create a simple DomForm or in simple terms a container that will pass the children components to the form component.
+Firstly we create a simple DomForm Component or in simple terms a container Component that will pass the children components to the form component.
 
 This is the DomForm (or you can name it any element for now) which wraps our entire form into our library.
 
@@ -28,15 +28,15 @@ This is the DomForm (or you can name it any element for now) which wraps our ent
 
 	const DomForm = props => (
 		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-				formRef.current.submit(); // calls the internal form submit which in return calls the funtion onSubmit passed to Form as props as in below
+		 onSubmit={(e) => {
+			e.preventDefault();
+			formRef.current.submit(); // calls the internal form submit which in return calls the funtion onSubmit passed to Form as props as in below
 			}}
 		>
 			<Form
 			ref={formRef}
 			onSubmit={(state) => { // returns the state of the form }  }
-			{...props} // pass the props which contains children and other
+			{...props} // pass the props which contains children and other props
 			/>
 		</form>
 	)
@@ -64,12 +64,33 @@ This is the part where we call the form container that we created above named Do
 
 
 ### - **createInput**
+This is a function provided by the form library to create an input component for application. To call this function we can either call by Form.createInput or call createInput itself. There is a pattern similar to mapStateToProps which is function currying  we need to pass a function that calls the update function which in return updates the value of an input in each onChange event and another parameter will be the component itself. Depending on the type of input the updatedValue can differ, for a simple text input we just pass the new value but for complex input such as checkbox or such we need to change a few steps before updating the value.
+<br> **Example :**  <br>
+
+A simple text input :
+
+	import { createInput } from 'r-form';
+
+	const createProps = (owner, { value }) => ({
+	  onChange: e => owner.update(e.target.value),
+	  value: value || '',
+	  });
+
+	const TextInput = createInput(createProps)('input');
+
+	export default TextInput;
+
+createInput is a *currying* function,  the first function takes the function parameter that calls on update function when Change is triggered (i.e. on every user change event). the second one takes the input component itself. The value for the update can be altered according to the component as well. Which is in example below
+
+
 
 ### - **Group**
 
 ### - **Array**
 
 ### - **Select**
+
+### - **Validation Functions**
 
 
 
