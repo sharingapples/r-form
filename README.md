@@ -120,11 +120,11 @@ An array component is the collection of the components wrapped within itself.  S
 	    name, value, insert, remove,
 	    }) => (
 	     <div key={name}>
-	      <TextInput name="name" />
+	      <TextInput name={name} />
 	      <button type=""button onClick={() => insert()}> + </button>
 	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
 	     </div>
-	    )
+	    )}
 	  </Array>
 	);
 
@@ -170,6 +170,67 @@ It's use case
 or
 
 		<TextInput name="name" validator={[required]} />
+
+### - **Combining Components**
+We can also combine Group, Array and Select component .
+<br> **Example :**  <br>
+Group within an Array component :
+
+	import React from 'react';
+	import { Group, Array } from 'r-form';
+	import TextInput from './TextInput';
+
+	const GroupWithinArray = () => (
+		<Array name="children">
+	   {({
+	    name, value, insert, remove,
+	    }) => (
+	     <Group name={key}>
+	        <TextInput name="name" />
+	        <TextInput name="age" />
+	        <button type=""button onClick={() => insert()}> + </button>
+	        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+	     </Group>
+	  )}
+		</Array>
+	);
+
+	export default GroupWithinArray;
+
+<br>
+Array within a Group Component : <br>
+
+	import React from 'react';
+	import { Array, Group } from 'r-form';
+	import TextInput from './TextInput';
+
+	const ArrayWithinGroup = () => (
+	  <Group name="contact">
+	   <Array name="email">
+	    {({
+	    name, value, insert, remove,
+	    }) => (
+	     <div key={name}>
+	      <TextInput name={name} />
+	      <button type=""button onClick={() => insert()}> + </button>
+	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+	     </div>
+	    )}
+	   </Array>
+
+	   <Array name="phoneNumber">
+	    {({
+	    name, value, insert, remove,
+	    }) => (
+	     <div key={name}>
+	      <TextInput name={name} />
+	      <button type=""button onClick={() => insert()}> + </button>
+	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+	     </div>
+	    )}
+	   </Array>
+	  </Group>
+     )
 
 ## **Usage**
 
