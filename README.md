@@ -153,7 +153,23 @@ Props :
 
 ### - **Validation Functions**
 
+These are the optional props to be passed to the form components for Array , Group or even simple input. This function takes two parameters and one the value needed to be validated and other being the state of whole form. Let's make a validation function for required condition where ta particular field is required.
+<br> **Example :**  <br>
+The required validation function :
 
+		export default function(value ,state) {
+		 const v = String(value).trim();
+		 if (v.length === 0 || v === 'undefined') {
+		   throw Err; // If validation fails
+		 }
+		 return v; // return the value as it is
+		}
+It's use case
+
+		<TextInput name="name" validator={required} />
+or
+
+		<TextInput name="name" validator={[required]} />
 
 ## **Usage**
 
