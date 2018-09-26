@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from './Group';
-import createInput from './Input';
+import createInput from './createInput';
 
 type Props = {
   onChange: (string) => any,

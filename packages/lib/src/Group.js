@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import createInput from './Input';
+import createInput from './createInput';
 
 export const { Provider, Consumer } = React.createContext();
 
