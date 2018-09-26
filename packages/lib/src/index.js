@@ -1,5 +1,5 @@
 import Form from './Form';
-import createInput from './Input';
+import createInput from './createInput';
 import Group from './Group';
 import Array from './Array';
 import Select from './Select';

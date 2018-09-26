@@ -17,6 +17,7 @@ class CheckBox extends Component {
             const checkBoxValue = value && value.includes(op) ? value.filter(v => v !== op) : checkbox.concat(op);
             onChange(checkBoxValue);
           }}
+          {...other}
         /> {op}
       </div>
     ));
