@@ -8,11 +8,7 @@ r-form library manages the state of the form, and all the changes that occur wit
 ## **Components**
 
 
-
 The components that provided by r-form library are :
-
-
-
 
 ### - **Form**
 
@@ -29,11 +25,11 @@ This is the DomForm (or you can name it any element for now) which wraps our ent
 	const DomForm = props => (
 		<form
 		 onSubmit={(e) => {
-			e.preventDefault();
-			formRef.current.submit(); // calls the internal form submit which in return calls the funtion onSubmit passed to Form as props as in below
+		  e.preventDefault();
+		  formRef.current.submit(); // calls the internal form submit which in return calls the funtion onSubmit passed to Form as props as in below
 			}}
 		>
-			<Form
+		 <Form
 			ref={formRef}
 			onSubmit={(state) => { // returns the state of the form }  }
 			{...props} // pass the props which contains children and other props
@@ -86,7 +82,55 @@ createInput is a *currying* function,  the first function takes the function par
 
 ### - **Group**
 
+A group component is as the name suggests a grouping component for similar kind of relative component. The group component for say maybe NAME which contains , firstName , middleName and then lastName or for ADDRESS . These components are related to name and are part of the name they can be grouped together which simplifies the data access , now we can simply call name.firstName to get the first name.
+<br> **Example :**  <br>
+
+	import { Group } from 'r-form';
+	import TextInput from './TextInput';
+
+	const GroupForm = () => (
+	 <Group name="name">
+	  <TextInput name="firstName" />
+	  <TextInput name="middleName" />
+	  <TextInput name="middleName" />
+	 </Group>
+	);
+
+	export default GroupForm;
+
 ### - **Array**
+An array component is the collection of the components wrapped within itself.  Say emails as people can have more than one EMAIL or even  PHONE-NUMBER. The render method for this is different than the other components used so far, for array “Function as Child” pattern is used. So there are parameters that come along with the render method. They are :
+
+ - name : the unique name for the children within an array , as it is required for individual component.
+ - value : the whole state/ value of the particular array component.
+ - insert : to add  the component in the dom,
+ - remove : to remove the particular component
+
+<br> **Example :**  <br>
+
+	import { Array } from 'r-form';
+	import TextInput from './TextInput';
+
+	const ArrayForm = () => (
+	  <Array name="email">
+	   {({
+	    name, value, insert, remove,
+	    }) => (
+	     <div key={name}>
+	      <TextInput name="name" />
+	      <button type=""button onClick={() => insert()}> + </button>
+	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+	     </div>
+	    )
+	  </Array>
+	);
+
+	export default ArrayForm;
+Parameters in Array :
+
+
+ - children: the children component of
+ - name : this acts as the individual naming for the component withing , as the child are rendered as shown above
 
 ### - **Select**
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from 'r-form';
+import { Group, Select, Array } from 'r-form';
 import DomForm from './DomForm';
 import DropDown from './FormComponents/DropDown';
 import CheckBox from './FormComponents/CheckBox';
@@ -23,7 +23,7 @@ const FormApp = ({ onClick }) => (
         Data Collection
       </div>
       <div className="form-information">
-        <Form.Group name="name">
+        <Group name="name">
           <div className="input-row">
             <div className="input-label">
               Name :
@@ -34,7 +34,7 @@ const FormApp = ({ onClick }) => (
               <TextInput className="inputSizeThird" name="lastName" placeholder="Last Name *" />
             </div>
           </div>
-        </Form.Group>
+        </Group>
         <div className="input-row">
           <div className="input-label">
             Age :
@@ -59,9 +59,9 @@ const FormApp = ({ onClick }) => (
             <RadioButton className="married text-common" name="married" options={married} />
           </div>
         </div>
-        <Form.Select select={state => state.married === 'Married'}>
+        <Select select={state => state.married === 'Married'}>
           {() => (
-            <Form.Group name="spouse">
+            <Group name="spouse">
               <div className="input-row">
                 <div className="input-label">
                   Spouse :
@@ -71,9 +71,9 @@ const FormApp = ({ onClick }) => (
                   <TextInput name="age" placeholder="Age" />
                 </div>
               </div>
-            </Form.Group>)
+            </Group>)
           }
-        </Form.Select>
+        </Select>
         <div className="input-row">
           <div className="input-label"> Vechile: </div>
           <div className="input-contents">
@@ -82,7 +82,7 @@ const FormApp = ({ onClick }) => (
         </div>
         <div className="input-row">
           <div className="input-label"> Address: </div>
-          <Form.Group name="address">
+          <Group name="address">
             <div className="input-contents">
               <TextInput className="inputSizeFull" name="address1" placeholder="Address *" />
             </div>
@@ -93,14 +93,14 @@ const FormApp = ({ onClick }) => (
               <TextInput className="inputSizeThird" name="state" placeholder="State" />
               <TextInput className="inputSizeThird" name="zip" placeholder="Zip" />
             </div>
-          </Form.Group>
+          </Group>
         </div>
         <div className="input-row">
           <div className="input-label">
             Email :
           </div>
           <div className="input-contents marginTopBottom ">
-            <Form.Array name="email" auto>
+            <Array name="email" auto>
               {({
                 name, value, insert, remove,
               }) => (
@@ -115,7 +115,7 @@ const FormApp = ({ onClick }) => (
                 </div>
               )
               }
-            </Form.Array>
+            </Array>
           </div>
         </div>
         <div className="input-row">
@@ -123,7 +123,7 @@ const FormApp = ({ onClick }) => (
             Phone No :
           </div>
           <div className="input-contents marginTopBottom ">
-            <Form.Array name="phoneNumber" auto>
+            <Array name="phoneNumber" auto>
               {({
                 name, insert, remove, value,
               }) => (
@@ -138,7 +138,7 @@ const FormApp = ({ onClick }) => (
                 </div>
               )
               }
-            </Form.Array>
+            </Array>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ const FormApp = ({ onClick }) => (
             />
           </div>
         </div>
-        <Form.Select select={state => state.qualification}>
+        <Select select={state => state.qualification}>
           {({ state }) => {
             const idx = QUALIFICATIONS.indexOf(state.qualification);
             const res = [];
@@ -171,7 +171,7 @@ const FormApp = ({ onClick }) => (
             return res;
           }
           }
-        </Form.Select>
+        </Select>
       </div>
       <div className="input-row">
         <button className="submit-button" type="submit"> Submit </button>
