@@ -1,13 +1,21 @@
 # R-Form
+r-form library manages the state of the form, and all the changes that occur within the form.
 
 ## **Usage**
 
-We create DOM element for the form. R-Form provides the bare skeleton for a form structure with no DOM element, we need to wrap the DOM element with the provided r-form library.
+Here is the rough sketch of the example that we will be making. It is a simple form that collects the data of an individual.
+
+![dc_rough](https://user-images.githubusercontent.com/12614476/46061420-4dcf2680-c186-11e8-9c24-7cbb2675dede.png)
+
+The library provides a mechanism for the state management of the form we need to implement and wrap it to the dom. So now we enlist the component that we will be using in making this form. <br>
+### Form DOM components :
+
+We create DOM element for the form. R-Form provides the bare skeleton for a form structure with no DOM element, we need to wrap the DOM element with the provided r-form library.  We pass the on change event and update the value there on the basis of the component. In case of simple text input we simply pass it where as other complex component requires a bit more calculation such as checkbox is an array of the data under same name so in that case we concat the data and update it. Let's see how we will make the components.
 
  - **Text Input**  <br>
-		 To create a simple text input we simply call the form library itself and call the createInput and 		  pass the props to be used in the input i.e. similar to the mapStateToProps. <br>
+		 To create a simple text input we simply call the form library itself and call the createInput and 		  pass the props to be used in the input i.e. similar to the mapStateToProps. For onChange event we simply update the value.<br>
 		 **Code :**  <br>
-	```React
+	```
 	import  Form  from  'r-form';
 
 	const  createProps  = (owner, { value }) => ({
@@ -18,9 +26,9 @@ We create DOM element for the form. R-Form provides the bare skeleton for a form
 	export  default  TextInput;
 	```
  - **Radio Button** <br>
-		 Apart from text input other input are special components such as radio button , checkbox, select, etc. Again similar to text input we pass props. <br>
+		 Apart from text input other input are special components such as radio button , checkbox, select, etc. We pass option from props as the list for this component. Again similar to text input we pass props and update the value. <br>
 		 **Code :** <br>
-	```React
+	```
 	import  React, { Component } from  'react';
 	import  Form  from  'r-form';
 
@@ -50,9 +58,9 @@ We create DOM element for the form. R-Form provides the bare skeleton for a form
 	export  default  RadioButton;
 	```
  - **DropDown** <br>
-		Similar to radio button we have similar component a dropdown. We again pass the props to this element. <br>
+		Similar to radio button we have similar component a dropdown. We pass option from props as the list for this component. We again pass the props to this element. <br>
 		 **Code :** <br>
-	```React
+	```
 	import  React, { Component } from  'react';
 	import  Form  from  'r-form';
 
@@ -82,4 +90,39 @@ We create DOM element for the form. R-Form provides the bare skeleton for a form
 	export  default  Form.createInput(owner  => ({
 		onChange:  v  =>  owner.update(v),
 	}))(DropDown);
+	```
+ - **CheckBox**
+	Similar to radio button we have similar component a dropdown. We again pass the props to this element. The update for this will be different as there will be multiple choice which all should be recorded. So for the onChange event here we add the value gained and add it to the form state.<br>
+		 **Code :** <br>
+
+	```
+	 import  React, { Component } from  'react';
+	 import  Form  from  'r-form';
+
+     class  CheckBox  extends  Component {
+		render() {
+			const {
+			name, className, value, onChange, options, ...other
+			} =  this.props;
+		} =  this.props;
+		return  options.map(op  => (
+			<div  className={className}  key={op}>
+				<input
+					name={name}
+					className={className}
+					type="checkbox"
+					onChange={() => {
+						const  checkbox = value || [];
+						const  checkBoxValue = value && value.includes(op) ? value.filter(v  =>  v !== op) :checkbox.concat(op);
+						onChange(checkBoxValue);
+						}}
+						/>  {op}
+						</div>
+						));
+		}
+	}
+	export  default  Form.createInput(owner  => ({
+		onChange:  v  =>  owner.update(v),
+	}))(CheckBox);
+
 	```

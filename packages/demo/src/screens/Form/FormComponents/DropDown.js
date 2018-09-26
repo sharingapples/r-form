@@ -19,7 +19,7 @@ class DropDown extends Component {
         {...other}
       >
         <option> {defaultValue} </option>
-        { Object.keys(options).map(op => <option key={op} value={op}> {options[op]} </option> )}
+        { Object.keys(options).map(op => <option key={op} value={op}> {options[op]} </option>)}
       </select>
     );
   }

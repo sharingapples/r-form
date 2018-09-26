@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from 'r-form';
 
-const CheckBox = ({ name, validator}) => (<input type="checkbox" />);
+class CheckBox extends Component {
+  render() {
+    const {
+      name, className, value, onChange, options, ...other
+    } = this.props;
+    return options.map(op => (
+      <div className={className} key={op}>
+        <input
+          name={name}
+          className={className}
+          type="checkbox"
+          onChange={() => {
+            const checkbox = value || [];
+            const checkBoxValue = value && value.includes(op) ? value.filter(v => v !== op) : checkbox.concat(op);
+            onChange(checkBoxValue);
+          }}
+        /> {op}
+      </div>
+    ));
+  }
+}
 
-export default CheckBox;
+export default Form.createInput(owner => ({
+  onChange: v => owner.update(v),
+}))(CheckBox);

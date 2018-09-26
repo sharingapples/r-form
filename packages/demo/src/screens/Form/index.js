@@ -2,6 +2,7 @@ import React from 'react';
 import Form from 'r-form';
 import DomForm from './DomForm';
 import DropDown from './FormComponents/DropDown';
+import CheckBox from './FormComponents/CheckBox';
 import TextInput from './FormComponents/TextInput';
 import RadioButton from './FormComponents/RadioButton';
 
@@ -11,6 +12,7 @@ import { required } from './validators';
 
 const genders = ['Male', 'Female', 'Other'];
 const married = ['Married', 'Unmarried'];
+const vechile = ['2 Wheeler', '4 Wheeler'];
 const QUALIFICATIONS = ['school', 'hss', 'bachelors', 'masters', 'doctor'];
 const QUALIFICATIONS_DISPLAY = ['School', 'Higher Secondary', 'Bachelors', 'Masters', 'Doctor'];
 
@@ -72,6 +74,12 @@ const FormApp = ({ onClick }) => (
             </Form.Group>)
           }
         </Form.Select>
+        <div className="input-row">
+          <div className="input-label"> Vechile: </div>
+          <div className="input-contents">
+            <CheckBox className="checkbox" name="vechile" options={vechile} />
+          </div>
+        </div>
         <div className="input-row">
           <div className="input-label"> Address: </div>
           <Form.Group name="address">
