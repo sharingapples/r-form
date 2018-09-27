@@ -102,11 +102,11 @@ const FormApp = ({ onClick }) => (
           <div className="input-contents marginTopBottom ">
             <Array name="email" auto>
               {({
-                name, value, insert, remove,
+                value, insert, remove,
               }) => (
-                <div className="contact" key={name}>
+                <div className="contact">
                   <div className="contact-input-wrapper">
-                    <TextInput className="contact-input" name={name} />
+                    <TextInput className="contact-input" />
                     <div className="contact-button-wrapper">
                       <button className="button" type="button" onClick={() => insert(true)}> + </button>
                       {value && value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }
@@ -125,11 +125,11 @@ const FormApp = ({ onClick }) => (
           <div className="input-contents marginTopBottom ">
             <Array name="phoneNumber" auto>
               {({
-                name, insert, remove, value,
+                insert, remove, value,
               }) => (
-                <div className="contact" key={name}>
+                <div className="contact" >
                   <div className="contact-input-wrapper">
-                    <TextInput className="contact-input" name={name} />
+                    <TextInput className="contact-input"/>
                     <div className="contact-button-wrapper">
                       <button className="button" type="button" onClick={() => insert()}> + </button>
                       {value && value.length > 0 && <button className="button" type="button" onClick={() => remove()}> - </button> }

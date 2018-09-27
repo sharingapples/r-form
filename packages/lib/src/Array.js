@@ -99,17 +99,24 @@ class ArrayComponent extends Component<Props> {
 
   render() {
     const {
-      name, auto, children, value, ...other
+      auto, children, value, ...other
     } = this.props;
 
     const adjusted = auto && value.length === 0 ? [null] : value;
 
-    return (
-      <Provider value={{ owner: this, state: value }} {...other}>
-        {adjusted.map((n, idx) => children({
-          name: idx, value, insert: this.insert(idx), remove: this.remove(idx),
-        }))}
-      </Provider>
+    return (adjusted.map((n, idx) => {
+      const arrayOwner = {
+        get: name => this.get(idx),
+        update: (name, text) => this.update(idx, text),
+        register: (name, node) => this.register(idx, node),
+      };
+      return (
+        <Provider key={idx} value={{ owner: arrayOwner, state: value }} {...other}>
+          {children({
+            value, insert: this.insert(idx), remove: this.remove(idx),
+          }) }
+        </Provider>
+      )})
     );
   }
 }

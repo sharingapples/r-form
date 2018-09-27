@@ -7,7 +7,7 @@ exports.default = exports.Consumer = exports.Provider = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Input = _interopRequireDefault(require("./Input"));
+var _createInput = _interopRequireDefault(require("./createInput"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -152,6 +152,6 @@ var createProps = function createProps(owner, _ref) {
   };
 };
 
-var _default = (0, _Input.default)(createProps)(Group);
+var _default = (0, _createInput.default)(createProps)(Group);
 
 exports.default = _default;

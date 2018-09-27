@@ -5,14 +5,14 @@ import TextInput from './FormComponents/TextInput';
 const AlmaMater = ({ ...props }) => (
   <Form.Array name="almaMater" defaultValue={[null]} {...props}>
     {({
-      name, value, insert, remove,
+      value, insert, remove,
     }) => {
       return (
-        <Form.Group key={name} name={name}>
+        <Form.Group>
           <div className="almaMater">
             <div className="input-row">
               <div className="input-label-almaMater">
-                {name === 0 && String(props.name).toUpperCase().concat(' : ')}
+                {/* {name === 0 && String(props.name).toUpperCase().concat(' : ')} */}
               </div>
               <div className="input-contents">
                 <TextInput name="institute" placeholder="Institute" />

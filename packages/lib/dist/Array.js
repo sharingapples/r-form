@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Group = require("./Group");
 
-var _Input = _interopRequireDefault(require("./Input"));
+var _createInput = _interopRequireDefault(require("./createInput"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -175,26 +175,36 @@ function (_Component) {
       var _this4 = this;
 
       var _this$props3 = this.props,
-          name = _this$props3.name,
           auto = _this$props3.auto,
           children = _this$props3.children,
           value = _this$props3.value,
-          other = _objectWithoutProperties(_this$props3, ["name", "auto", "children", "value"]);
+          other = _objectWithoutProperties(_this$props3, ["auto", "children", "value"]);
 
       var adjusted = auto && value.length === 0 ? [null] : value;
-      return _react.default.createElement(_Group.Provider, _extends({
-        value: {
-          owner: this,
-          state: value
-        }
-      }, other), adjusted.map(function (n, idx) {
-        return children({
-          name: idx,
+      return adjusted.map(function (n, idx) {
+        var arrayOwner = {
+          get: function get(name) {
+            return _this4.get(idx);
+          },
+          update: function update(name, text) {
+            return _this4.update(idx, text);
+          },
+          register: function register(name, node) {
+            return _this4.register(idx, node);
+          }
+        };
+        return _react.default.createElement(_Group.Provider, _extends({
+          key: idx,
+          value: {
+            owner: arrayOwner,
+            state: value
+          }
+        }, other), children({
           value: value,
           insert: _this4.insert(idx),
           remove: _this4.remove(idx)
-        });
-      }));
+        }));
+      });
     }
   }]);
 
@@ -212,6 +222,6 @@ var createProps = function createProps(owner, _ref) {
   };
 };
 
-var _default = (0, _Input.default)(createProps)(ArrayComponent);
+var _default = (0, _createInput.default)(createProps)(ArrayComponent);
 
 exports.default = _default;
