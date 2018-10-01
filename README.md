@@ -37,35 +37,47 @@ This is the DomForm (or you can name it any element for now) which wraps our ent
 import React from 'react';
 import Form from 'r-form';
 
-const  formRef  =  React.createRef(); // create a reference to call the form events
+// create a reference to call the form events
+const formRef = React.createRef();
 
 const DomForm = props => (
   <form
     onSubmit={(e) => {
     e.preventDefault();
-    // calls the internal form submit which in return calls the funtion onSubmit
-    formRef.current.submit(); passed to Form as props as in below
+    // calls the internal form submit , which in return calls
+    // the funtion onSubmit passed to Form as props as in below
+    formRef.current.submit();
     }}
   >
     <Form
-    ref={formRef}
-    onSubmit={(state) => { // returns the state of the form }  }
-    {...props} // pass the props which contains children and other props
+      ref={formRef}
+      onSubmit={(state) => {
+        // returns the state of the form
+        }
+      }
+      {...props}
+      // pass the props which contains children and other props
     />
   </form>
 )
+
+export default DomForm;
 ```
 
 This is the part where we call the form container that we created above named DomForm. Now the input components can be plain components such as below or a self made components as well which we will discuss later.
-```javascript
-  import React from 'react';
-  import DomForm from './DomFrom';
 
-  const FormApp = () => (
-    <DomForm>
-      <input type="text" name="name" />
-    </DomForm>
-  )
+
+```javascript
+import React from 'react';
+import DomForm from './DomFrom';
+
+const FormApp = () => (
+  <DomForm>
+    <input type="text" name="name" />
+  </DomForm>
+);
+
+export default FormApp;
 ```
 
 
@@ -107,7 +119,7 @@ const TextInput = createInput(createProps)('input');
 export default TextInput;
   ```
 
-createInput is a *currying* function,  the first function takes the function parameter that calls on update function when Change is triggered (i.e. on every user change event). the second one takes the input component itself. The value for the update can be altered according to the component as well. Which is in example below
+**createInput** is a *currying* function,  the first function takes the function parameter that calls on update function when Change is triggered (i.e. on every user change event). the second one takes the input component itself. The value for the update can be altered according to the component as well. Which is in example below
 
 
 
