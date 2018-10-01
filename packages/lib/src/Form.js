@@ -21,7 +21,7 @@ class Form extends Component<Props> {
     }
     this.setState({
       [name]: text,
-    }, () => console.log('State Form: ', this.state));
+    });
   }
 
   register(name, node) {

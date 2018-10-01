@@ -1,11 +1,8 @@
 import React from 'react';
 import { Group, Select, Array } from 'r-form';
-import DomForm from './DomForm';
-import DropDown from './FormComponents/DropDown';
-import CheckBox from './FormComponents/CheckBox';
-import TextInput from './FormComponents/TextInput';
-import RadioButton from './FormComponents/RadioButton';
-
+import {
+  DomForm, TextInput, DropDown, CheckBox, RadioButton,
+} from 'r-form-dom';
 import AlmaMater from './AlmaMater';
 import { required } from './validators';
 
@@ -17,7 +14,7 @@ const QUALIFICATIONS = ['school', 'hss', 'bachelors', 'masters', 'doctor'];
 const QUALIFICATIONS_DISPLAY = ['School', 'Higher Secondary', 'Bachelors', 'Masters', 'Doctor'];
 
 const FormApp = ({ onClick }) => (
-  <DomForm onClick={onClick}>
+  <DomForm onClick={onClick} onSubmit={state => console.log('state', state)}>
     <div className="form-container">
       <div className="form-title">
         Data Collection
@@ -127,7 +124,7 @@ const FormApp = ({ onClick }) => (
               {({
                 insert, remove, value,
               }) => (
-                <div className="contact" >
+                <div className="contact">
                   <div className="contact-input-wrapper">
                     <TextInput className="contact-input"/>
                     <div className="contact-button-wrapper">

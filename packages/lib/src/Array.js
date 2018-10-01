@@ -116,7 +116,8 @@ class ArrayComponent extends Component<Props> {
             value, insert: this.insert(idx), remove: this.remove(idx),
           }) }
         </Provider>
-      )})
+      );
+    })
     );
   }
 }

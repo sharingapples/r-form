@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from 'r-form';
 
-// create a reference to call the form events
-const formRef = React.createRef();
+// eslint-disable-next-line
+class DropDown extends Component {
+  render() {
+    const {
+      name, className, value, onChange, defaultValue, options, ...other
+    } = this.props;
+    return (
+      <select
+        name={name}
+        className={className}
+        value={value || defaultValue}
+        onChange={(e) => {
+          e.preventDefault();
+          onChange(e.target.value);
+        }}
+        {...other}
+      >
+        <option> {defaultValue} </option>
+        { Object.keys(options).map(op => <option key={op} value={op}> {options[op]} </option>)}
+      </select>
+    );
+  }
+}
 
-const DomForm = props => (
-  <form
-    onSubmit={(e) => {
-      e.preventDefault();
-      // calls the internal form submit , which in return calls
-      // the funtion onSubmit passed to Form as props as in below
-      formRef.current.submit();
-    }}
-  >
-    <Form
-      ref={formRef}
-      onSubmit={(state) => {
-        props.onSubmit(state);
-      }
-      }
-      {...props}
-      // pass the props which contains children and other props
-    />
-  </form>
-);
 
-export default DomForm;
+export default Form.createInput(owner => ({
+  onChange: v => owner.update(v),
+}))(DropDown);
