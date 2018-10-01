@@ -1,4 +1,5 @@
 
+
 # R-Form
 
 r-form library manages the state of the form, and all the changes that occur within the form.
@@ -45,7 +46,7 @@ This is the part where we call the form container that we created above named Do
 
 	const FormApp = () => (
 		<DomForm>
-			<input type="text" name="name" />
+		  <input type="text" name="name" />
 		</DomForm>
 	)
 
@@ -103,7 +104,6 @@ A group component is as the name suggests a grouping component for similar kind 
 ### - **Array**
 An array component is the collection of the components wrapped within itself.  Say emails as people can have more than one EMAIL or even  PHONE-NUMBER. The render method for this is different than the other components used so far, for array “Function as Child” pattern is used. So there are parameters that come along with the render method. They are :
 
- - name : the unique name for the children within an array , as it is required for individual component.
  - value : the whole state/ value of the particular array component.
  - insert : to add  the component in the dom,   an extra parameter can be added at function call a boolean value to determine whether to add the next component after the current one.
  - remove : to remove the particular component.
@@ -117,10 +117,10 @@ An array component is the collection of the components wrapped within itself.  S
 	const ArrayForm = () => (
 	  <Array name="email">
 	   {({
-	    name, value, insert, remove,
+	     value, insert, remove,
 	    }) => (
-	     <div key={name}>
-	      <TextInput name={name} />
+	     <div >
+	      <TextInput />
 	      <button type=""button onClick={() => insert()}> + </button>
 	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
 	     </div>
@@ -166,10 +166,10 @@ The required validation function :
 		}
 It's use case
 
-		<TextInput name="name" validator={required} />
+	<TextInput name="name" validator={required} />
 or
 
-		<TextInput name="name" validator={[required]} />
+	<TextInput name="name" validator={[required]} />
 
 ### - **Combining Components**
 We can also combine Group, Array and Select component .
@@ -183,13 +183,13 @@ Group within an Array component :
 	const GroupWithinArray = () => (
 		<Array name="children">
 	   {({
-	    name, value, insert, remove,
+	    value, insert, remove,
 	    }) => (
-	     <Group name={key}>
-	        <TextInput name="name" />
-	        <TextInput name="age" />
-	        <button type=""button onClick={() => insert()}> + </button>
-	        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+	     <Group >
+	      <TextInput name="name" />
+	      <TextInput name="age" />
+	      <button type=""button onClick={() => insert()}> + </button>
+	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
 	     </Group>
 	  )}
 		</Array>
@@ -208,10 +208,10 @@ Array within a Group Component : <br>
 	  <Group name="contact">
 	   <Array name="email">
 	    {({
-	    name, value, insert, remove,
+	    value, insert, remove,
 	    }) => (
-	     <div key={name}>
-	      <TextInput name={name} />
+	     <div>
+	      <TextInput/>
 	      <button type=""button onClick={() => insert()}> + </button>
 	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
 	     </div>
@@ -220,10 +220,10 @@ Array within a Group Component : <br>
 
 	   <Array name="phoneNumber">
 	    {({
-	    name, value, insert, remove,
+	    value, insert, remove,
 	    }) => (
-	     <div key={name}>
-	      <TextInput name={name} />
+	     <div>
+	      <TextInput />
 	      <button type=""button onClick={() => insert()}> + </button>
 	      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
 	     </div>

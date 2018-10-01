@@ -12,7 +12,7 @@ const AlmaMater = ({ ...props }) => (
           <div className="almaMater">
             <div className="input-row">
               <div className="input-label-almaMater">
-                {/* {name === 0 && String(props.name).toUpperCase().concat(' : ')} */}
+                { String(props.name).toUpperCase().concat(' : ')}
               </div>
               <div className="input-contents">
                 <TextInput name="institute" placeholder="Institute" />
