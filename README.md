@@ -6,7 +6,7 @@ r-form is a library that manages the state for the components of React and React
 
 ## **Motivation**
 
-While working with React or React-Native we face the difficulty of state management of a particuar component say in React it is difficult to manage the state of a form in the DOM element. So in a situation of onsubmit we need to call all the values within the form. So in that case we need to call the refs one by one or access through the state of that component.
+While working with React or React-Native we face the difficulty of state management of a input component say in React it is difficult to manage the state of a form in the DOM element. So in a situation of onsubmit we need to call all the values from within the form. So in that case we need to either call the refs one by one or access through the state of that component.
 
 
 **Problems ??**
@@ -17,7 +17,7 @@ While working with React or React-Native we face the difficulty of state managem
 
 **Solution**
 
-r-form provides the state management for any kind of complexity in a form be it rather a normal form or the form containing group or array of form component. The whole state/ value of the form created is stored as an object within the form component and it is there where the form value are stored and can be retrived with ease.
+r-form provides the state management for any kind of complexity in an input component be it rather a normal input component or the input component containing group or array of input component. The whole state/ value of the component created is stored as an object within the input component and it is there where the form value are stored and can be retrived with ease.
 
 Example, say if we have form with component such a name , address, email . Name can be easily accessed as form.state.name and Address can be accessed as form.state.address.
 
@@ -42,15 +42,23 @@ The components that provided by r-form library are :
 
 * ### Form :
 
-   This is the main component for the form library.
+   This is the main component for the form library. This is the wrapper for all the component, whose state is to be managed. We use this component as the wrapper by passing the childrens to it for the render of the component.
 
+* ### createInput :
+  This is a function that wraps the DOM element as an element for the form. Wrapping a normal input component with this function makes is a part of the form.
 
+* ###  Array :
 
+  This is a special component where, the wrapped component is replicated/cloned as per requirement.
 
+  Example, array of input component for email as there can be multiple email for one person.
+* ###  Group :
 
-* createInput
-* Array
-* Group
+  This is another special component which is a association of closely related data. Example, name can consist of 3 parts  first name , middle name and last name. This can be grouped as one namely can be called name. Three input component can be grouped under a name.
+
+* ### Others :
+
+  We can use the combination of array within a group and also multiple copies of a group. And other feature can be the validation for a group , array or an individual input component.
 
 ### - **Form**
 
@@ -116,12 +124,12 @@ export default FormApp;
   Input Component used inside the form must have :
 
 
-     - name : the data are managed as an object so to set and get the data a name is required
+  - name : the data are managed as an object so to set and get the data a name is required
 
-     **Optional :**
-     - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on.
-     - onChange: user can pass an onChange event.
-     - onError: call to a function that is called if validation is failed.
+  **Optional :**
+  - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on.
+  - onChange: user can pass an onChange event.
+  - onError: call to a function that is called if validation is failed.
 
 
 
