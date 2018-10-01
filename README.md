@@ -25,7 +25,11 @@ The components that provided by r-form library are :
 
 ### - **Form**
 
-The main wrapper for the form component itself. We pass the children to be rendered within the form. So we call the a component that wraps its children within and then passes it to the form.  <br> **Example :**  <br>
+The main wrapper for the form component itself. We pass the children to be rendered within the form. So we call a component that wraps its children components within and then passes it to the form component provided by the library.
+
+**Example :**
+
+
 Firstly we create a simple DomForm Component or in simple terms a container Component that will pass the children components to the form component.
 
 This is the DomForm (or you can name it any element for now) which wraps our entire form into our library.
@@ -63,34 +67,43 @@ This is the part where we call the form container that we created above named Do
     </DomForm>
   )
 ```
-
+<br>
 **NOTE :**
-  Input Component used inside the form must have <br>
-     - name : the data are managed as an object so to set and get the data a name is required <br>
-     **Optional :** <br>
-     - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on. <br>
-     - onChange: user can pass an onChange event. <br>
-     - onError: call to a function that is called if validation is failed. <br>
+  Input Component used inside the form must have :
+
+
+     - name : the data are managed as an object so to set and get the data a name is required
+
+
+     **Optional :**
+     - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on.
+     - onChange: user can pass an onChange event.
+     - onError: call to a function that is called if validation is failed.
 
 
 
 ### - **createInput**
 This is a function provided by the form library to create an input component for application. To call this function we can either call by Form.createInput or call createInput itself. There is a pattern similar to mapStateToProps which is function currying  we need to pass a function that calls the update function which in return updates the value of an input in each onChange event and another parameter will be the component itself. Depending on the type of input the updatedValue can differ, for a simple text input we just pass the new value but for complex input such as checkbox or such we need to change a few steps before updating the value.
-<br> **Example :**  <br>
+
+**Example :**
+
+
 
 A simple text input :
 
-  import React from 'react';
-  import { createInput } from 'r-form';
+```javascript
+import React from 'react';
+import { createInput } from 'r-form';
 
-  const createProps = (owner, { value }) => ({
+const createProps = (owner, { value }) => ({
     onChange: e => owner.update(e.target.value),
     value: value || '',
-    });
+});
 
-  const TextInput = createInput(createProps)('input');
+const TextInput = createInput(createProps)('input');
 
-  export default TextInput;
+export default TextInput;
+  ```
 
 createInput is a *currying* function,  the first function takes the function parameter that calls on update function when Change is triggered (i.e. on every user change event). the second one takes the input component itself. The value for the update can be altered according to the component as well. Which is in example below
 
@@ -99,21 +112,25 @@ createInput is a *currying* function,  the first function takes the function par
 ### - **Group**
 
 A group component is as the name suggests a grouping component for similar kind of relative component. The group component for say maybe NAME which contains , firstName , middleName and then lastName or for ADDRESS . These components are related to name and are part of the name they can be grouped together which simplifies the data access , now we can simply call name.firstName to get the first name.
-<br> **Example :**  <br>
 
-  import React from 'react';
-  import { Group } from 'r-form';
-  import TextInput from './TextInput';
+**Example :**
 
-  const GroupForm = () => (
-   <Group name="name">
-    <TextInput name="firstName" />
-    <TextInput name="middleName" />
-    <TextInput name="middleName" />
-   </Group>
-  );
 
-  export default GroupForm;
+```javascript
+import React from 'react';
+import { Group } from 'r-form';
+import TextInput from './TextInput';
+
+const GroupForm = () => (
+    <Group name="name">
+      <TextInput name="firstName" />
+      <TextInput name="middleName" />
+      <TextInput name="middleName" />
+    </Group>
+);
+
+export default GroupForm;
+```
 
 ### - **Array**
 An array component is the collection of the components wrapped within itself.  Say emails as people can have more than one EMAIL or even  PHONE-NUMBER. The render method for this is different than the other components used so far, for array “Function as Child” pattern is used. So there are parameters that come along with the render method. They are :
@@ -122,45 +139,53 @@ An array component is the collection of the components wrapped within itself.  S
  - insert : to add  the component in the dom,   an extra parameter can be added at function call a boolean value to determine whether to add the next component after the current one.
  - remove : to remove the particular component.
 
-<br> **Example :**  <br>
+ **Example :**
 
-  import React from 'react';
-  import { Array } from 'r-form';
-  import TextInput from './TextInput';
+```javascript
 
-  const ArrayForm = () => (
-    <Array name="email">
-     {({
-       value, insert, remove,
-      }) => (
-       <div >
+import React from 'react';
+import { Array } from 'r-form';
+import TextInput from './TextInput';
+
+const ArrayForm = () => (
+  <Array name="email">
+    {({
+      value, insert, remove,
+    }) => (
+      <div>
         <TextInput />
         <button type=""button onClick={() => insert()}> + </button>
         { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-       </div>
-      )}
-    </Array>
-  );
+      </div>
+    )}
+  </Array>
+);
 
-  export default ArrayForm;
+export default ArrayForm;
 
+```
 
 ### - **Select**
 This component is the dynamic component that is dependent  on the form state and a select props that is a function which tells when to display this particular component. <br>
 
-<br> **Example :**  <br>
 
-  import React from 'react';
-  import { Select } from 'r-form';
-  import ArrayForm from './ArrayForm';
+**Example :**
 
-  const SelectForm = () =>(
-    <Select select={state => state.name.length > 0 }>
-      <ArrayForm />
-      </Select>
-  );
+```javascript
 
-  export default SelectForm;
+import React from 'react';
+import { Select } from 'r-form';
+import ArrayForm from './ArrayForm'; // from above component that we made
+
+const SelectForm = () =>(
+  <Select select={state => state.name.length > 0 }>
+    <ArrayForm />
+  </Select>
+);
+
+export default SelectForm;
+
+```
 
 Props :
  - select ( required ) : is a function , which returns a boolean value that is dependent on the state of the form , such as in example if the name has more than 1 word this particular component is then rendered
@@ -168,48 +193,69 @@ Props :
 ### - **Validation Functions**
 
 These are the optional props to be passed to the form components for Array , Group or even simple input. This function takes two parameters and one the value needed to be validated and other being the state of whole form. Let's make a validation function for required condition where ta particular field is required.
-<br> **Example :**  <br>
+
+
+**Example :**
+
+
 The required validation function :
 
-    export default function(value ,state) {
-     const v = String(value).trim();
-     if (v.length === 0 || v === 'undefined') {
-       throw Err; // If validation fails
-     }
-     return v; // return the value as it is
-    }
-It's use case
+```javascript
 
-  <TextInput name="name" validator={required} />
-or
+export default function(value ,state) {
 
-  <TextInput name="name" validator={[required]} />
+  const v = String(value).trim();
+
+  if (v.length === 0 || v === 'undefined') {
+    throw Err; // If validation fails
+  }
+
+  return v; // return the value as it is
+}
+
+```
+
+It's use case , firstly we pass it as a simple function :
+
+```javascript
+<TextInput name="name" validator={required} />
+```
+or we can pass it as function :
+```javascript
+<TextInput name="name" validator={[required]} />
+```
 
 ### - **Combining Components**
 We can also combine Group, Array and Select component .
-<br> **Example :**  <br>
+
+**Example :**
+
+
+
 Group within an Array component :
 
-  import React from 'react';
-  import { Group, Array } from 'r-form';
-  import TextInput from './TextInput';
+```javascript
+import React from 'react';
+import { Group, Array } from 'r-form';
+import TextInput from './TextInput';
 
-  const GroupWithinArray = () => (
-    <Array name="children">
-     {({
-      value, insert, remove,
-      }) => (
-       <Group >
+const GroupWithinArray = () => (
+  <Array name="children">
+    {({
+    value, insert, remove,
+    }) => (
+      <Group >
         <TextInput name="name" />
         <TextInput name="age" />
         <button type=""button onClick={() => insert()}> + </button>
         { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-       </Group>
-    )}
-    </Array>
-  );
+      </Group>
+  )}
+  </Array>
+);
 
-  export default GroupWithinArray;
+export default GroupWithinArray;
+```
 
 <br>
 Array within a Group Component : <br>
