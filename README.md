@@ -67,13 +67,15 @@ This is the part where we call the form container that we created above named Do
     </DomForm>
   )
 ```
-<br>
+
+
 **NOTE :**
+
+
   Input Component used inside the form must have :
 
 
      - name : the data are managed as an object so to set and get the data a name is required
-
 
      **Optional :**
      - validators: user can pass a validator function or array of validator function for particular field , such as if the value is required or not or if it has to be numeric and so on.
@@ -257,40 +259,46 @@ const GroupWithinArray = () => (
 export default GroupWithinArray;
 ```
 
-<br>
-Array within a Group Component : <br>
 
-  import React from 'react';
-  import { Array, Group } from 'r-form';
-  import TextInput from './TextInput';
 
-  const ArrayWithinGroup = () => (
-    <Group name="contact">
-     <Array name="email">
+Array within a Group Component :
+
+
+```javascript
+import React from 'react';
+import { Array, Group } from 'r-form';
+import TextInput from './TextInput';
+
+const ArrayWithinGroup = () => (
+  <Group name="contact">
+    <Array name="email">
       {({
       value, insert, remove,
       }) => (
-       <div>
-        <TextInput/>
-        <button type=""button onClick={() => insert()}> + </button>
-        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-       </div>
+        <div>
+          <TextInput/>
+          <button type=""button onClick={() => insert()}> + </button>
+          { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+        </div>
       )}
-     </Array>
 
-     <Array name="phoneNumber">
+    </Array>
+
+    <Array name="phoneNumber">
       {({
       value, insert, remove,
       }) => (
-       <div>
-        <TextInput />
-        <button type=""button onClick={() => insert()}> + </button>
-        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-       </div>
+        <div>
+          <TextInput />
+          <button type=""button onClick={() => insert()}> + </button>
+          { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+        </div>
       )}
-     </Array>
-    </Group>
-     )
+    </Array>
+  </Group>
+);
+export default ArrayWithinGroup;
+```
 
 ## **Usage**
 
