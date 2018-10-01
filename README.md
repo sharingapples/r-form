@@ -2,11 +2,12 @@
 
 # **R-Form**
 
-r-form is a library that  manages the state of the form, and all the changes that occur within the form.
+r-form is a library that manages the state for the components of React and React-Native, and all the changes that occur within those components.
 
 ## **Motivation**
 
-While working with **form** we face this certain scenario such as to access cetain value from the form we need to either access it using refs or by usage of a state management within that component itself. So in a situation of onsubmit we need to send all the values within the form in that case we need to call the refs one by one or access through the state of that component.
+While working with React or React-Native we face the difficulty of state management of a particuar component say in React it is difficult to manage the state of a form in the DOM element. So in a situation of onsubmit we need to call all the values within the form. So in that case we need to call the refs one by one or access through the state of that component.
+
 
 **Problems ??**
 
@@ -16,7 +17,9 @@ While working with **form** we face this certain scenario such as to access ceta
 
 **Solution**
 
-r-form provides the state management for any kind of complexity in a form be it rather a normal form or the form containing group or array of form component. The whole state/ value of the form created is stored as an object within the form component and it is there where the form value are stored and can be retrived with ease. Exampl, say if we have form with component such a name , address, email . Name can be easily accessed as form.state.name and Address can be accessed as form.state.address.
+r-form provides the state management for any kind of complexity in a form be it rather a normal form or the form containing group or array of form component. The whole state/ value of the form created is stored as an object within the form component and it is there where the form value are stored and can be retrived with ease.
+
+Example, say if we have form with component such a name , address, email . Name can be easily accessed as form.state.name and Address can be accessed as form.state.address.
 
 
 ## **Installation**
