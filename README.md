@@ -7,6 +7,16 @@ r-form library manages the state of the form, and all the changes that occur wit
 
 ## **Installation**
 
+To install using npm
+
+```node
+npm i r-form
+```
+
+using yarn
+```node
+yarn add r-form
+```
 
 ## **Components**
 
