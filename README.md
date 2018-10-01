@@ -375,7 +375,7 @@ To create a simple text input we simply call the form library itself and call th
 
 **Code :** <br>
 
-```
+```javascript
 
 import Form from 'r-form';
 
@@ -395,7 +395,7 @@ Apart from text input other input are special components such as radio button , 
 
 **Code :** <br>
 
-```
+```javascript
 
 import React,{ Component } from 'react';
 import Form from 'r-form';
@@ -436,7 +436,7 @@ Similar to radio button we have similar component a dropdown. We pass option fro
 
 **Code :** <br>
 
-```
+```javascript
 
 import React,{ Component } from 'react';
 import Form from 'r-form';
@@ -481,7 +481,7 @@ Similar to radio button we have similar component a dropdown. We again pass the 
 
 
 
-```
+```javascript
 import React,{ Component } from 'react';
 import Form from 'r-form';
 
