@@ -1,8 +1,22 @@
 
 
-# R-Form
+# **R-Form**
 
-r-form library manages the state of the form, and all the changes that occur within the form.
+r-form is a library that  manages the state of the form, and all the changes that occur within the form.
+
+## **Motivation**
+
+While working with **form** we face this certain scenario such as to access cetain value from the form we need to either access it using refs or by usage of a state management within that component itself. So in a situation of onsubmit we need to send all the values within the form in that case we need to call the refs one by one or access through the state of that component.
+
+**Problems ??**
+
+-refs : it becomes tedious to call the component one by one
+
+-state : the state management is itself a complicated task
+
+**Solution**
+
+r-form provides the state management for any kind of complexity in a form be it rather a normal form or the form containing group or array of form component. The whole state/ value of the form created is stored as an object within the form component and it is there where the form value are stored and can be retrived with ease. Exampl, say if we have form with component such a name , address, email . Name can be easily accessed as form.state.name and Address can be accessed as form.state.address.
 
 
 ## **Installation**
@@ -22,6 +36,18 @@ yarn add r-form
 
 
 The components that provided by r-form library are :
+
+* ### Form :
+
+   This is the main component for the form library.
+
+
+
+
+
+* createInput
+* Array
+* Group
 
 ### - **Form**
 
@@ -110,8 +136,8 @@ import React from 'react';
 import { createInput } from 'r-form';
 
 const createProps = (owner, { value }) => ({
-    onChange: e => owner.update(e.target.value),
-    value: value || '',
+  onChange: e => owner.update(e.target.value),
+  value: value || '',
 });
 
 const TextInput = createInput(createProps)('input');
@@ -136,11 +162,11 @@ import { Group } from 'r-form';
 import TextInput from './TextInput';
 
 const GroupForm = () => (
-    <Group name="name">
-      <TextInput name="firstName" />
-      <TextInput name="middleName" />
-      <TextInput name="middleName" />
-    </Group>
+  <Group name="name">
+    <TextInput name="firstName" />
+    <TextInput name="middleName" />
+    <TextInput name="middleName" />
+  </Group>
 );
 
 export default GroupForm;
@@ -166,11 +192,11 @@ const ArrayForm = () => (
     {({
       value, insert, remove,
     }) => (
-      <div>
-        <TextInput />
-        <button type=""button onClick={() => insert()}> + </button>
-        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-      </div>
+    <div>
+      <TextInput />
+      <button type=""button onClick={() => insert()}> + </button>
+      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+    </div>
     )}
   </Array>
 );
@@ -217,7 +243,6 @@ The required validation function :
 ```javascript
 
 export default function(value ,state) {
-
   const v = String(value).trim();
 
   if (v.length === 0 || v === 'undefined') {
@@ -258,12 +283,12 @@ const GroupWithinArray = () => (
     {({
     value, insert, remove,
     }) => (
-      <Group >
-        <TextInput name="name" />
-        <TextInput name="age" />
-        <button type=""button onClick={() => insert()}> + </button>
-        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-      </Group>
+    <Group >
+      <TextInput name="name" />
+      <TextInput name="age" />
+      <button type=""button onClick={() => insert()}> + </button>
+      { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+    </Group>
   )}
   </Array>
 );
@@ -287,24 +312,23 @@ const ArrayWithinGroup = () => (
       {({
       value, insert, remove,
       }) => (
-        <div>
-          <TextInput/>
-          <button type=""button onClick={() => insert()}> + </button>
-          { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-        </div>
+      <div>
+        <TextInput/>
+        <button type=""button onClick={() => insert()}> + </button>
+        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+      </div>
       )}
-
     </Array>
 
     <Array name="phoneNumber">
       {({
       value, insert, remove,
       }) => (
-        <div>
-          <TextInput />
-          <button type=""button onClick={() => insert()}> + </button>
-          { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
-        </div>
+      <div>
+        <TextInput />
+        <button type=""button onClick={() => insert()}> + </button>
+        { value && value.length > 0 <button type="button" onClick={() => remove()}> - </button>}
+      </div>
       )}
     </Array>
   </Group>
