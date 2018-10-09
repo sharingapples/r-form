@@ -4,6 +4,11 @@ import { Consumer } from './Group';
 function createInput(mapFormToProps) {
   return (InputComponent) => {
     class InputHelper extends Component {
+      constructor() {
+        super();
+        this.state = { error: null };
+      }
+
       componentDidMount() {
         const { owner, name } = this.props;
         owner.register(name, this);
@@ -23,10 +28,15 @@ function createInput(mapFormToProps) {
         }
         const validationValue = value;
         if (validator) {
-          if (Array.isArray(validator)) {
-            validator.forEach(v => v(validationValue, state));
-          } else {
-            validator(validationValue, state);
+          try {
+            if (Array.isArray(validator)) {
+              validator.forEach(v => v(validationValue, state));
+            } else {
+              validator(validationValue, state);
+            }
+            this.setState({ error: null });
+          } catch (e) {
+            this.setState({ error: e });
           }
         }
         return value;
@@ -43,7 +53,8 @@ function createInput(mapFormToProps) {
             }
           },
         };
-        const inputProps = { ...other, ...mapFormToProps(params, this.props) };
+        const { error } = this.state;
+        const inputProps = { ...other, ...mapFormToProps(params, this.props, error) };
         return (
           <InputComponent
             ref={(node) => { this.reference = node; }}
@@ -60,7 +71,7 @@ function createInput(mapFormToProps) {
             owner={owner}
             state={state}
             {...props}
-            value={owner.get(props.name)}
+            value={owner.get(props.name) || props.value}
           />)}
       </Consumer>
     );

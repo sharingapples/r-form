@@ -56,6 +56,9 @@ The components that provided by r-form library are :
 
   This is another special component which is a association of closely related data. Example, name can consist of 3 parts  first name , middle name and last name. This can be grouped as one namely can be called name. Three input component can be grouped under a name.
 
+* ###  Select :
+
+  This is a dynamic component and any component wrapped inside it is rendered according to the select function passed thorught it as props. The select prop function can be made dependent on the state of the form itself.
 * ### Others :
 
   We can use the combination of array within a group and also multiple copies of a group. And other feature can be the validation for a group , array or an individual input component.
