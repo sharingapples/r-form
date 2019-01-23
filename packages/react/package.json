@@ -1,8 +1,0 @@
-{
-  "name": "r-form",
-  "version": "1.0.0",
-  "description": "Pure react form",
-  "main": "index.js",
-  "author": "Ranjan Shrestha",
-  "license": "MIT"
-}
