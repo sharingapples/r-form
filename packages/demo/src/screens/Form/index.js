@@ -14,7 +14,7 @@ const QUALIFICATIONS = ['school', 'hss', 'bachelors', 'masters', 'doctor'];
 const QUALIFICATIONS_DISPLAY = ['School', 'Higher Secondary', 'Bachelors', 'Masters', 'Doctor'];
 
 const FormApp = ({ onClick }) => (
-  <DomForm onClick={onClick} onSubmit={state => console.log('state', state)}>
+  <DomForm onClick={onClick} value={{ email: ['aashish.y2z@gmail.com '], age: 23 }} onSubmit={state => console.log('state', state)}>
     <div className="form-container">
       <div className="form-title">
         Data Collection
