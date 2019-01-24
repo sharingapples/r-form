@@ -10,7 +10,7 @@ type Props = {
 class Form extends Component<Props> {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = props.value || {};
     this.nodes = [];
   }
 
